@@ -1,3 +1,10 @@
 1. git init
 2. git track
 3. git add
+
+
+1. git pull url
+2. git reset
+3. git reset hard
+4. to reset all files
+5. new code no good. errors bad. roll back to last working state
