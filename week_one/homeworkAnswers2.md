@@ -13,3 +13,9 @@
 1. git branch
 2. git checkout
 3. writing new feature, different team? avoid conflicts
+
+
+1. two developers have been working on the same code.
+2. git push
+
+
