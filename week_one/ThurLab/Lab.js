@@ -38,3 +38,6 @@ const isPalindrome = (inString) => {
  }
 
  console.log(isPalindrome("aa"));
+
+
+
