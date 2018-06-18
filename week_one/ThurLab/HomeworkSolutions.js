@@ -28,6 +28,8 @@ const sumArray = (inArray) => {
 }
 
 const checkPrime = (n) => {
+    if (i===1)
+        return false;
     for (let i=2; i<=Math.sqrt(n);i++){
         if (n%i==0)
             { return false; }
@@ -41,6 +43,15 @@ const printPrimes = (n) => {
         if (checkPrime(i))
             { console.log(i); }
     }
+}
+
+const insertDash = (inString) => {
+    inString=inString.toString();
+    inString.
+    for (let i=0; i<iString.length; i++)
+        {
+            
+        }    
 }
 
 console.log(calcSide(2,2));
