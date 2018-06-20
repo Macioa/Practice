@@ -47,7 +47,7 @@ const printPrimes = (n) => {
 
 const insertDash = (inString) => {
     inString=inString.toString();
-    inString.
+    inString=inString.split('');
     for (let i=0; i<iString.length; i++)
         {
             

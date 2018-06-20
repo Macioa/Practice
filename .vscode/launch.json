@@ -4,13 +4,12 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "name": "Launch firefox",
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "file": "${workspaceFolder}/week_one/ThurLab/Lab.html"
+            "file": "${workspaceFolder}/week_two/MonClass/Index.html"
         },
     ]
 }

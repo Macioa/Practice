@@ -30,7 +30,6 @@ const isPalindrome = (inString) => {
         secondHalf=secondHalf.slice(1,secondHalf.length);
     }
     secondHalf=secondHalf.reverse();
-    console.log(firstHalf,secondHalf);
     for (i = 0; i < firstHalf.length; ++i) {
         if (firstHalf[i] !== secondHalf[i]) return false;
     }
