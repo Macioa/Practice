@@ -36,6 +36,7 @@ class Player {
     chooseCardFromHand(cards){
         if (this.isComputer)
             this.card=cards[Math.floor(Math.random()*cards.length)];
+        let vartest = prompt("this is a test");
     }
 }
 
