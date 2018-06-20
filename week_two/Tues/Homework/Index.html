@@ -10,11 +10,73 @@
     <script src="Game.js"></script>
 </head>
 <body>
+<form id="setupForm">
+    Number of Decks to Play:
+    <br>
+    <input type="number" value="5" id="numDecks">
+    <br>
+    Number of Cards in Each Hand:
+    <br>
+    <input type="number" value="3" id="numCards">
+    <br><br><br>
+    <button id='addPlayer'>Add a Player</button>
+    <button id='removePlayer'>Remove a Player</button>
+    <br><br>
+
+    <div id='playerform' name='playerform' numPlayers="0">
+    </div>
+
+    <br><br>
+    <button id='begin'>START</button>
     
 </body>
 
 <script>
-    var myGame = new Game([new Player("computer 1"), new Player("computer 2")]);
-    myGame.start();
+    var playerform=document.getElementById('playerform');
+    var playerformcontent=[];
+    
+    function start(){
+        let players = [];
+        for (let inputfield of document.getElementById('playerform').childNodes){
+                if (inputfield.type=='text')
+                    players.push(new Player(inputfield.value));
+            }
+            let myGame = new Game(players, document.getElementById('numDecks').value, document.getElementById('numCards').value);
+            alert(players.length);
+            alert(document.getElementById('numDecks').value);
+            alert(document.getElementById('numCards').value);
+            myGame.start();
+    }
+
+    function addPlayer (event, name='Computer') {
+        if (event)
+            event.preventDefault();
+        alert(playerform.innerHTML);
+        let playerNumber = parseInt(playerform.getAttribute('numPlayers'))+1;
+        playerform.setAttribute('numPlayers',playerNumber);
+        playerformcontent.push("<input type='text' id='player"+playerNumber+"' value='"+name+" "+playerNumber+"'><br>");
+        playerform.innerHTML=playerformcontent.join();
+    }
+
+    function removePlayer(event){
+        if (event)
+            event.preventDefault();
+        playerformcontent.pop();
+        playerform.innerHTML=playerformcontent.join();
+    }
+
+    window.onload=function(){
+        addPlayer(null, "Player");
+        addPlayer(null, "Computer");
+    }
+    document.getElementById('addPlayer').onclick = addPlayer;
+    document.getElementById('removePlayer').onclick = removePlayer;
+    document.getElementById('begin').onclick = start;
+
+    var newbutton = document.createElement('button');
+    newbutton.innerHTML="TEXT ON A BUTTON";
+    document.getElementsByTagName('body')[0].appendChild(newbutton);
+
+
 </script>
 </html>
