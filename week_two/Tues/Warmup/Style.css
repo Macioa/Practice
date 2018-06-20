@@ -1,0 +1,66 @@
+body{
+    margin: auto;
+    padding: 7%;
+    background-color: blanchedalmond;
+}
+h1{
+    background-color: rgba(252, 252, 252, 0.4);
+    display: inline-block;
+}
+nav{
+    background-color: rgba(252, 252, 252, 0.4);
+    display: inline-block;
+}
+img{
+    width: 25%;
+    margin: auto;
+}
+div{
+    margin: auto;
+    text-align: center;
+}
+.box{
+    border-style: solid;
+    padding: 15px;
+    margin: 150px auto;
+    background-color: rgba(252, 252, 252, 0.6);
+    display: inline-block;
+}
+.section{
+    padding: 400px;
+    margin: auto;
+    text-align: center;
+    padding: 50px;
+}
+#top{
+    background-image: url("images/close_white.jpg");
+}
+#collection{
+    background-color: white;
+}
+#about{
+    background-color: lightcyan;
+}
+#blog{
+    background-image: url("images/images.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#contact{
+    background-color: white;
+}
+#main{
+    box-shadow: 0 0 20px 5px black;
+}
+form{
+    border: solid;
+    display: inline-block;
+    padding: 20px;
+}
+input{
+    margin: 15px;
+}
+#message{
+    width: 500px;
+    height: 100px;
+}
