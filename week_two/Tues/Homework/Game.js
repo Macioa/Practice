@@ -53,13 +53,14 @@ class Game {
     playRound(){
         console.log(this.players);
         //draw cards for each player
-        this.players.forEach( function(player){
+        for (let j=0; j<this.players.length; j++){
             let hand = [];
             for (let i=0; i<this.cardsPerHand; i++)
                 hand.push(this.cardsRemaining.pop());
-            player.chooseCardFromHand(hand);
+            this.players[j].chooseCardFromHand(hand);
             this.cardsPlayed.concat(hand);
-        });
+        }
+
         //determine best card chosen for the round
         let bestCard = this.players[0].card;
         this.players.forEach( function(player){
@@ -83,10 +84,9 @@ class Game {
             if (player.points>highScore)
                 highScore=player.points;
         });
-        this.players.forEach( function(player){
-            if (player.points==highScore)
-                this.winners.push(player);
-        });
+        for (let j=0; j<this.players.length; j++)
+            if (this.players[j].points==highScore)
+                this.winners.push(this.players[j]);
         console.log("GameOver. Winners are:");
         this.winners.forEach( function (player){
             console.log(player.name);
