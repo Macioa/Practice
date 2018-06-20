@@ -31,7 +31,7 @@ class Player {
         this.points+=points;
         this.roundsWon++;
 
-        console.log('${this.name} won a round');
+        console.log(this.name+' won a round');
     }
     chooseCardFromHand(cards){
         if (this.isComputer)
@@ -94,6 +94,3 @@ class Game {
     }
 }
 
-
-var myGame = new Game([new Player("computer 1"), new Player("computer 2")]);
-myGame.start();
