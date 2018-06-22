@@ -1,0 +1,20 @@
+textarea{
+    border-style: ridge;
+    display: inline-block;
+    width: 45%;
+    margin: 10px;
+    background-color: lightslategray;
+}
+#entitylist{
+    height: 130px;
+    float: left;
+}
+#log{
+    height: 300px;
+    float: right;
+}
+#actionlist{
+    height: 130px;
+    float: left;
+    display: block;
+}
