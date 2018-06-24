@@ -76,15 +76,18 @@ const makeHobbits = () => {
   console.log('Make hobbits');
 
   // 1. display an unordered list of the hobbits in the shire.
-
+  console.log($('The-Shire'));
+  $('#The-Shire').append($('<ul id="hobbit-list"/>'));
   // 2. give each hobbit a class of "hobbit"
 
   // hint: create a 'ul' outside the loop upon which to append the 'li's
 
   // hint: get 'The-Shire' by using its id
-
+  for (let hobbit of hobbits){
+    $('#hobbit-list').append($(`<li id="${hobbit}">${hobbit}</li>`));
+  }
 };
-
+makeHobbits();
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 2 complete - Made the Hobbits".
 
