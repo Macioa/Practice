@@ -148,7 +148,8 @@ const makeBuddies = () => {
 
   // 3. give each of the buddies a class of "buddy"
   for (let bud of buddies){
-    $('#buddy-list').append(`<li id="${bud}" class="buddy">${bud}</li>`);
+    let buddyid=bud.split(" ")[0];
+    $('#buddy-list').append(`<li id="${buddyid}" class="buddy">${bud}</li>`);
   }
 
 };
@@ -220,13 +221,14 @@ forgeTheFellowShip();
 const theBalrog = () => {
 
   // 1. change the 'Gandalf' textNode to 'Gandalf the White'
-
+  console.log($('#Gandalf'))
+    $('#Gandalf').text("Gandalf the White");
   // 2. add a class "the-white" to this element
-
+    $('#Gandalf').addClass("the-white");
   // 3. in the style.css file, add a css rule to make elements of the class "the-white" have a white background and a grey border
-
-};
-
+    $('.the-white').css({ "background-color": "white", "border":"solid grey", });
+  };
+theBalrog();
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 9 complete - Updated Gandalf"
 
