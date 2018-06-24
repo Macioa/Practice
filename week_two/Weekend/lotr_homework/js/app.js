@@ -64,7 +64,7 @@ for (let land of lands){
      $('#middle-earth').append($(`<a id="${land}"/>`).append($(`<h1>${land}</h1>`)));
   }
 };
-makeMiddleEarth();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 1 complete - Made Middle Earth".
 
@@ -82,11 +82,12 @@ const makeHobbits = () => {
   // hint: create a 'ul' outside the loop upon which to append the 'li's
 
   // hint: get 'The-Shire' by using its id
-  for (let hobbit of hobbits){
-    $('#shire-residents').append($(`<li id="${hobbit}" class="hobbit">${hobbit}</li>`));
+  for (let hobbitName of hobbits){
+    let hobbitid = hobbitName.split(" ")[0];
+    $('#shire-residents').append($(`<li id="${hobbitid}" class="hobbit">${hobbitName}</li>`));
   }
 };
-makeHobbits();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 2 complete - Made the Hobbits".
 
@@ -94,7 +95,7 @@ makeHobbits();
 // Chapter 3
 // ============
 const keepItSecretKeepItSafe = () => {
-
+  console.log("keep it safe");
   // 1. create an empty div with an id of 'the-ring'
         //const ring = $('<div id="the-ring">'); Why doesn't this work?
   const ring = document.createElement('div');
@@ -110,7 +111,7 @@ const keepItSecretKeepItSafe = () => {
   // when you think you have given Frodo the ring, check in your Elements tab
 
 };
-keepItSecretKeepItSafe();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 3 complete - Made the ring and gave it to Frodo".
 
@@ -118,7 +119,7 @@ keepItSecretKeepItSafe();
 // Chapter 4
 // ============
 const makeBaddies = () => {
-
+    console.log("rise of sauron");
   // 1. display an unordered list of baddies in Mordor
     //const baddiesUL = $('<ul id="baddies"/>')
     const baddiesUL = document.createElement('ul'); baddiesUL.id = "baddies";
@@ -126,15 +127,14 @@ const makeBaddies = () => {
     for (let bad of baddies){
       //baddies.append($(`<li id="${bad}" class="baddy">${bad}</li>`));
       let baddyid = bad.replace('The ','');
-      console.log(baddyid)
-      baddyid = baddyid.split(" ")[0];
+       baddyid = baddyid.split(" ")[0];
       let baddy = document.createElement('li'); baddy.id=baddyid; baddy.className="baddy"; baddy.innerHTML=bad;
       baddiesUL.append(baddy);
     }
   // 3. remember to append them to Mordor
   $('#Mordor').append(baddiesUL);
 };
-makeBaddies();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 4 complete - Made the Baddies"..
 
@@ -142,7 +142,7 @@ makeBaddies();
 // Chapter 5
 // ============
 const makeBuddies = () => {
-
+  console.log("You're not alone");
   // 1. create an aside tag and append it to middle-earth below mordor
   $('#middle-earth').append('<aside id="buddies"/>');
 
@@ -156,7 +156,7 @@ const makeBuddies = () => {
   }
 
 };
-makeBuddies();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 5 complete - Made the Buddies".
 
@@ -164,6 +164,7 @@ makeBuddies();
 // Chapter 6
 // ============
 const leaveTheShire = () => {
+  console.log("Leave the shire.");
   let hobbits = $('.hobbit');
   $('#Rivendell').append('<ul id="rivendell-residents"/>')
   for (let hobbit of hobbits){
@@ -175,7 +176,7 @@ const leaveTheShire = () => {
   // hint: the hobbits ul is a childNode of The-Shire-- there is way to get a list of childNodes
 
 };
-leaveTheShire();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 6 complete - Left the Shire"
 
@@ -183,14 +184,14 @@ leaveTheShire();
 // Chapter 7
 // ============
 const beautifulStranger = () => {
-
+  console.log("Once and future king");
   // 1. change the buddy 'Strider' textnode to "Aragorn"
   $('#Strider').text("Aragorn");
 
   // hint: You can get a list of elements by tag name, such as 'aside'
 
 };
-beautifulStranger();
+
 
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 7 complete - Strider is changed to Aragorn"
@@ -199,7 +200,7 @@ beautifulStranger();
 // Chapter 8
 // ============
 const forgeTheFellowShip = () => {
-
+    console.log("I get by with a little help from my friends");
   // 1. create a new div with an id 'the-fellowship'
     let fellowshipDiv = document.createElement('div'); fellowshipDiv.id="the-fellowship";
   // 2. add an h1 with the text 'The Fellowship' to this new div
@@ -214,7 +215,7 @@ const forgeTheFellowShip = () => {
     for (let bud of $('.buddy'))
       $('#fellowship-list').append(bud);
 };
-forgeTheFellowShip();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 8 complete - The Fellowship is created"
 
@@ -222,16 +223,15 @@ forgeTheFellowShip();
 // Chapter 9
 // ============
 const theBalrog = () => {
-
+  console.log("YOU SHALL NOT PASS");
   // 1. change the 'Gandalf' textNode to 'Gandalf the White'
-  console.log($('#Gandalf'))
     $('#Gandalf').text("Gandalf the White");
   // 2. add a class "the-white" to this element
     $('#Gandalf').addClass("the-white");
   // 3. in the style.css file, add a css rule to make elements of the class "the-white" have a white background and a grey border
     $('.the-white').css({ "background-color": "white", "border":"solid grey", });
   };
-theBalrog();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 9 complete - Updated Gandalf"
 
@@ -239,7 +239,7 @@ theBalrog();
 // Chapter 10
 // ============
 const hornOfGondor = () => {
-
+  console.log("Riiiiiiicola");
   // 1. create a pop-up alert that the horn of gondor has been blown
     alert("horn of gondor has been blown");
   // 2. Boromir's been killed by the Uruk-hai! Put a linethrough on Boromir's name
@@ -247,7 +247,7 @@ const hornOfGondor = () => {
   // 3. Tricky: Remove the Uruk-Hai from the Baddies on the page
     $('#Uruk-hai').remove();
 };
-hornOfGondor();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 10 complete - horn of gandor blew and Boromir is dead"
 
@@ -255,17 +255,15 @@ hornOfGondor();
 // Chapter 11
 // ============
 const itsDangerousToGoAlone = () => {
-
+  console.log("The steps of mount doom");
   // 1. take Frodo and Sam out of the fellowship and move them to Mordor (they don't need to be inside a ul in Mordor)
   $('#Mordor').append($('#Frodo'));
   $('#Mordor').append($('#Sam'));
   // 2. add a div with an id of 'mount-doom' to Mordor
   $('#Mordor').append(`<div id="mount-doom"/>`);
- // let mdDiv = document.createElement('div'); mdDiv.id="mount-doom";
-  //$('#Mordor').append(mdDiv);
 
 };
-itsDangerousToGoAlone();
+
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 11 complete - Sam and Frodo are in Mordor and Mount Doom has been created"
 
@@ -273,11 +271,11 @@ itsDangerousToGoAlone();
 // Chapter 12
 // ============
 const weWantsIt = () => {
-
+  console.log("My precious");
   // 1. Create a div with an id of 'gollum' and add it to Mordor
-
+  $('#baddies').append('<div id="gollum"/>')
   // 2. Move the ring from Frodo and give it to Gollum
-
+  $('#gollum').append($('#the-ring'));
   // 3. Move Gollum into Mount Doom
 
 };
@@ -289,12 +287,15 @@ const weWantsIt = () => {
 // Chapter 13
 // ============
 const thereAndBackAgain = () => {
-
+    console.log("there's no place like home");
   // 1. remove Gollum and the Ring from the DOM
-
+    $('#gollum').remove();
   // 2. remove all the baddies from the DOM
-
+    for (let bad of $('.baddy'))
+      bad.remove();
   // 3. Move all the hobbits back to the shire
+    for (let hobbit of $('.hobbit'))
+      $('#shire-residents').append(hobbit);
 
 };
 
