@@ -96,10 +96,9 @@ makeHobbits();
 const keepItSecretKeepItSafe = () => {
 
   // 1. create an empty div with an id of 'the-ring'
-        //const ring = $('<div id="the-ring">');
+        //const ring = $('<div id="the-ring">'); Why doesn't this work?
   const ring = document.createElement('div');
   ring.id = "the-ring";
-  console.log(ring);
 
   // 2. add the ring as a child of Frodo
         // $('#Frodo Baggins').append(ring); I gave Frodo an ID :(
@@ -121,12 +120,21 @@ keepItSecretKeepItSafe();
 const makeBaddies = () => {
 
   // 1. display an unordered list of baddies in Mordor
-
+    //const baddiesUL = $('<ul id="baddies"/>')
+    const baddiesUL = document.createElement('ul'); baddiesUL.id = "baddies";
   // 2. give each of the baddies a class of "baddy"
-
+    for (let bad of baddies){
+      //baddies.append($(`<li id="${bad}" class="baddy">${bad}</li>`));
+      let baddy = document.createElement('li'); baddy.id=bad; baddy.className="baddy"; baddy.innerHTML=bad;
+      console.log(baddy);
+      baddiesUL.append(baddy);
+    }
   // 3. remember to append them to Mordor
+  console.log(baddiesUL);
+  $('#Mordor').append(baddiesUL);
 };
-
+makeBaddies();
+console.log("TEST");
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 4 complete - Made the Baddies"..
 
