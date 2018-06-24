@@ -76,14 +76,14 @@ const makeHobbits = () => {
   console.log('Make hobbits');
 
   // 1. display an unordered list of the hobbits in the shire.
-  $('#The-Shire').append($('<ul id="hobbit-list"/>'));
+  $('#The-Shire').append($('<ul id="shire-residents"/>'));
   // 2. give each hobbit a class of "hobbit"
 
   // hint: create a 'ul' outside the loop upon which to append the 'li's
 
   // hint: get 'The-Shire' by using its id
   for (let hobbit of hobbits){
-    $('#hobbit-list').append($(`<li id="${hobbit}">${hobbit}</li>`));
+    $('#shire-residents').append($(`<li id="${hobbit}" class="hobbit">${hobbit}</li>`));
   }
 };
 makeHobbits();
@@ -104,7 +104,7 @@ const keepItSecretKeepItSafe = () => {
         // $('#Frodo Baggins').append(ring); I gave Frodo an ID :(
 
   // hint: Frodo does not have an id, but there is a command to retrieve all elements with a certain class. This should give you an array for you to access . . .
-  let hobbits = $('#hobbit-list').children();
+  let hobbits = $('#shire-residents').children();
   let Frodos = hobbits.filter(":contains('Frodo')");
   Frodos[0].append(ring);
   // when you think you have given Frodo the ring, check in your Elements tab
@@ -160,13 +160,18 @@ makeBuddies();
 // Chapter 6
 // ============
 const leaveTheShire = () => {
-
+  let hobbits = $('.hobbit');
+  $('#Rivendell').append('<ul id="rivendell-residents"/>')
+  for (let hobbit of hobbits){
+    //hobbit.detach();
+    $('#rivendell-residents').append(hobbit);
+  }
   // 1. grab the hobbits (the ul in which they reside) and move them to Rivendell
 
   // hint: the hobbits ul is a childNode of The-Shire-- there is way to get a list of childNodes
 
 };
-
+leaveTheShire();
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 6 complete - Left the Shire"
 
@@ -176,10 +181,12 @@ const leaveTheShire = () => {
 const beautifulStranger = () => {
 
   // 1. change the buddy 'Strider' textnode to "Aragorn"
+  $('#Strider').text("Aragorn");
 
   // hint: You can get a list of elements by tag name, such as 'aside'
 
 };
+beautifulStranger();
 
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 7 complete - Strider is changed to Aragorn"
