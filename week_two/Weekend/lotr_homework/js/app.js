@@ -197,15 +197,20 @@ beautifulStranger();
 const forgeTheFellowShip = () => {
 
   // 1. create a new div with an id 'the-fellowship'
-
+    let fellowshipDiv = document.createElement('div'); fellowshipDiv.id="the-fellowship";
   // 2. add an h1 with the text 'The Fellowship' to this new div
-
+    let fellowshipH1 = document.createElement('h1'); fellowshipH1.id="fellowshipH1"; fellowshipH1.innerHTML="The Fellowship";
+    fellowshipDiv.append(fellowshipH1);
   // 3. append the fellowship to middle-earth
-
+    $('#middle-earth').append(fellowshipDiv);
   // 4. add the unordered lists of hobbits and buddies to 'the-fellowship'
-
+    $('#the-fellowship').append('<ul id="fellowship-list"/>');
+    for (let hobbit of $('.hobbit'))
+      $('#fellowship-list').append(hobbit);
+    for (let bud of $('.buddy'))
+      $('#fellowship-list').append(bud);
 };
-
+forgeTheFellowShip();
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 8 complete - The Fellowship is created"
 
