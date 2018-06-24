@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://cdn.layerjs.org/libs/layerjs/layerjs-0.5.2.min.js"></script>
+    <link href="http://cdn.layerjs.org/libs/layerjs/layerjs-0.5.2.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div lj-type="stage" style="width:100%; height:500px">
+        <div lj-type="layer" lj-default-frame="frame1">
+          <div lj-type="frame" lj-name="frame1">
+            ... content of frame 1 ...
+          </div>
+          <div lj-type="frame" lj-name="frame2">
+            ... content of frame 2 ...
+          </div>
+        </div>
+      </div>
+      <a href="#frame1">Frame 1</a>
+      <a href="#frame2">Frame 2</a>
+</body>
+<script src="layer.js"></script>
+</html>

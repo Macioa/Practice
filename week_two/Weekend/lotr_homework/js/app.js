@@ -47,11 +47,13 @@ const makeMiddleEarth = () => {
   console.log("Trying to make middle earth.");
 
   // 1. create a section tag with an id of middle-earth
+const midEarth = $('<section id="middle-earth"/>');
 
   // 2. append the section to the body of the DOM.
+$('body').append(midEarth);
 
   // 3. use a for loop to iterate over the lands array that does the following:
-
+for (let land of lands){
   //   3a. creates an article tag (there should be one for each land when the loop is done)
 
   //   3b. gives each land article an `id` tag of the corresponding land name
@@ -59,9 +61,10 @@ const makeMiddleEarth = () => {
   //   3c. includes an h1 with the name of the land inside each land article
 
   //   3d. appends each land to the middle-earth section
-
+     $('#middle-earth').append($(`<a id="${land}"/>`).append($(`<h1>${land}</h1>`)));
+  }
 };
-
+makeMiddleEarth();
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 1 complete - Made Middle Earth".
 

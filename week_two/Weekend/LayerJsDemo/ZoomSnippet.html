@@ -1,0 +1,55 @@
+<html>
+
+ 
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="zoomin interface">
+
+  <script src="https://cdn.layerjs.org/libs/layerjs/layerjs-0.5.2.min.js"></script>
+
+  <link href="https://cdn.layerjs.org/libs/layerjs/layerjs-0.5.2.css" type="text/css" rel="stylesheet" />
+
+  <link href="https://cdn.layerjs.org/examples/zoom/your-style.css" type="text/css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div lj-type="stage">
+        <div lj-type="layer" lj-layout="canvas">
+
+          <div lj-type="frame" lj-name="zoomin">
+            <div lj-type="stage">
+              <div lj-type="layer" lj-layout="canvas">
+                <div lj-type="frame" lj-name="frame1">
+                    <a class="coverlink" href="#frame1;zoomin;minimenu.hamburger"></a>
+                    <iframe width="100%" height="100%" frameborder="0" src="https://techcrunch.com/2017/04/03/apple-gpu-tech/amp/"></iframe>
+                </div>
+                <div lj-type="frame" lj-name="frame2">
+                  ... content frame 2 ...
+                </div>
+                ...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div lj-type="layer" id="minimenu" lj-default-frame="!none" lj-native-scroll="false">
+        <a href="#zoomout;frame1;minimenu.!none" lj-type="frame" id="hamburger" lj-start-position="top" lj-fit-to="fixed" lj-transition="down">
+          &#x2630;
+        </a>
+      </div>
+    
+      <script>
+        layerJS.init();   
+        console.log("running"); 
+      </script>
+    
+
+
+</body>
