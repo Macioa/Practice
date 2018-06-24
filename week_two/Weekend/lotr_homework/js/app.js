@@ -61,8 +61,11 @@ for (let land of lands){
   //   3c. includes an h1 with the name of the land inside each land article
 
   //   3d. appends each land to the middle-earth section
-     $('#middle-earth').append($(`<a id="${land}"/>`).append($(`<h1>${land}</h1>`)));
+    if ($(`#${land}`).length===0)
+        $('#middle-earth').append($(`<a id="${land}"/>`).append($(`<h1>${land}</h1>`)));
+    else console.warn(`${land} already exists`);
   }
+  document.getElementById('Mordor').scrollIntoView();
 };
 
 // COMMIT YOUR WORK
@@ -73,10 +76,15 @@ for (let land of lands){
 // ============
 const makeHobbits = () => {
 
-  console.log('Make hobbits');
-
   // 1. display an unordered list of the hobbits in the shire.
-  $('#The-Shire').append($('<ul id="shire-residents"/>'));
+  if ($('#The-Shire').length!=0)
+      $('#The-Shire').append($('<ul id="shire-residents"/>'));
+  else {
+    console.error("The Shire does not exist");
+    return 0;
+  }
+
+  console.log('Make hobbits');
   // 2. give each hobbit a class of "hobbit"
 
   // hint: create a 'ul' outside the loop upon which to append the 'li's
@@ -84,8 +92,11 @@ const makeHobbits = () => {
   // hint: get 'The-Shire' by using its id
   for (let hobbitName of hobbits){
     let hobbitid = hobbitName.split(" ")[0];
-    $('#shire-residents').append($(`<li id="${hobbitid}" class="hobbit">${hobbitName}</li>`));
+    if ($(`#${hobbitid}`).length===0)
+      $('#shire-residents').append($(`<li id="${hobbitid}" class="hobbit">${hobbitName}</li>`));
+    else console.warn(`${hobbitName} already exists`);
   }
+  document.getElementById('The-Shire').scrollIntoView();
 };
 
 // COMMIT YOUR WORK
@@ -95,6 +106,11 @@ const makeHobbits = () => {
 // Chapter 3
 // ============
 const keepItSecretKeepItSafe = () => {
+  if ($('#Frodo').length===0){
+    console.error("Frodo does not exist");
+    return 0;
+  }
+
   console.log("keep it safe");
   // 1. create an empty div with an id of 'the-ring'
         //const ring = $('<div id="the-ring">'); Why doesn't this work?
@@ -105,10 +121,14 @@ const keepItSecretKeepItSafe = () => {
         // $('#Frodo Baggins').append(ring); I gave Frodo an ID :(
 
   // hint: Frodo does not have an id, but there is a command to retrieve all elements with a certain class. This should give you an array for you to access . . .
-  let hobbits = $('#shire-residents').children();
+  let hobbits = $('.hobbit');
   let Frodos = hobbits.filter(":contains('Frodo')");
-  Frodos[0].append(ring);
+
+  if ($('#the-ring').length===0)
+    Frodos[0].append(ring);
+  else console.warn('the ring already exists');
   // when you think you have given Frodo the ring, check in your Elements tab
+  document.getElementById('Frodo').scrollIntoView();
 
 };
 
@@ -119,20 +139,29 @@ const keepItSecretKeepItSafe = () => {
 // Chapter 4
 // ============
 const makeBaddies = () => {
+  if ($('#Mordor').length!=0)
     console.log("rise of sauron");
+  else {
+    console.error("Mordor does not exist");
+    return 0;
+  }
   // 1. display an unordered list of baddies in Mordor
     //const baddiesUL = $('<ul id="baddies"/>')
     const baddiesUL = document.createElement('ul'); baddiesUL.id = "baddies";
   // 2. give each of the baddies a class of "baddy"
     for (let bad of baddies){
       //baddies.append($(`<li id="${bad}" class="baddy">${bad}</li>`));
-      let baddyid = bad.replace('The ','');
-       baddyid = baddyid.split(" ")[0];
-      let baddy = document.createElement('li'); baddy.id=baddyid; baddy.className="baddy"; baddy.innerHTML=bad;
-      baddiesUL.append(baddy);
+      let baddyid = bad.replace('The ','').split(" ")[0];
+      if ($(`#${baddyid}`).length===0){
+        let baddy = document.createElement('li'); baddy.id=baddyid; baddy.className="baddy"; baddy.innerHTML=bad;
+        baddiesUL.append(baddy);
+      } else console.warn(`${bad} already exists`);
     }
   // 3. remember to append them to Mordor
-  $('#Mordor').append(baddiesUL);
+
+    $('#Mordor').append(baddiesUL);
+    document.getElementById('Mordor').scrollIntoView();
+
 };
 
 // COMMIT YOUR WORK
@@ -142,6 +171,10 @@ const makeBaddies = () => {
 // Chapter 5
 // ============
 const makeBuddies = () => {
+  if ($('#middle-earth').length===0){
+    console.error("middle earth does not exist");
+    return 0;
+  }
   console.log("You're not alone");
   // 1. create an aside tag and append it to middle-earth below mordor
   $('#middle-earth').append('<aside id="buddies"/>');
@@ -152,9 +185,11 @@ const makeBuddies = () => {
   // 3. give each of the buddies a class of "buddy"
   for (let bud of buddies){
     let buddyid=bud.split(" ")[0];
-    $('#buddy-list').append(`<li id="${buddyid}" class="buddy">${bud}</li>`);
+    if ($(`#${buddyid}`).length===0)
+      $('#buddy-list').append(`<li id="${buddyid}" class="buddy">${bud}</li>`);
+    else console.warn(`#${bud} already exists`);
   }
-
+  document.getElementById('buddy-list').scrollIntoView();
 };
 
 // COMMIT YOUR WORK
@@ -164,6 +199,10 @@ const makeBuddies = () => {
 // Chapter 6
 // ============
 const leaveTheShire = () => {
+  if ( ($('#Rivendell').length===0)   ||   ($('#Rivendell').length===0)  ){
+    console.error("Requirements not met to leave the Shire");
+    return 0;
+  }
   console.log("Leave the shire.");
   let hobbits = $('.hobbit');
   $('#Rivendell').append('<ul id="rivendell-residents"/>')
@@ -171,6 +210,7 @@ const leaveTheShire = () => {
     //hobbit.detach();
     $('#rivendell-residents').append(hobbit);
   }
+  document.getElementById('Rivendell').scrollIntoView();
   // 1. grab the hobbits (the ul in which they reside) and move them to Rivendell
 
   // hint: the hobbits ul is a childNode of The-Shire-- there is way to get a list of childNodes
@@ -184,10 +224,15 @@ const leaveTheShire = () => {
 // Chapter 7
 // ============
 const beautifulStranger = () => {
+  if ($('#Strider').length===0){
+    console.error("Strider does not exist");
+    return 0;
+  }
+
   console.log("Once and future king");
   // 1. change the buddy 'Strider' textnode to "Aragorn"
   $('#Strider').text("Aragorn");
-
+  document.getElementById('Strider').scrollIntoView();
   // hint: You can get a list of elements by tag name, such as 'aside'
 
 };
@@ -200,6 +245,12 @@ const beautifulStranger = () => {
 // Chapter 8
 // ============
 const forgeTheFellowShip = () => {
+    if ($('#middle-earth').length===0){
+      console.error("middle earth does not exist");
+      return 0;
+    }
+
+
     console.log("I get by with a little help from my friends");
   // 1. create a new div with an id 'the-fellowship'
     let fellowshipDiv = document.createElement('div'); fellowshipDiv.id="the-fellowship";
@@ -214,6 +265,7 @@ const forgeTheFellowShip = () => {
       $('#fellowship-list').append(hobbit);
     for (let bud of $('.buddy'))
       $('#fellowship-list').append(bud);
+    document.getElementById('the-fellowship').scrollIntoView();
 };
 
 // COMMIT YOUR WORK
@@ -223,13 +275,20 @@ const forgeTheFellowShip = () => {
 // Chapter 9
 // ============
 const theBalrog = () => {
+  if ($('#Gandalf').length===0){
+    console.error("Gandalf does not exist");
+    return 0;
+  }
+
   console.log("YOU SHALL NOT PASS");
   // 1. change the 'Gandalf' textNode to 'Gandalf the White'
+    document.getElementById('Gandalf').scrollIntoView();
     $('#Gandalf').text("Gandalf the White");
   // 2. add a class "the-white" to this element
     $('#Gandalf').addClass("the-white");
   // 3. in the style.css file, add a css rule to make elements of the class "the-white" have a white background and a grey border
     $('.the-white').css({ "background-color": "white", "border":"solid grey", });
+
   };
 
 // COMMIT YOUR WORK
@@ -239,13 +298,23 @@ const theBalrog = () => {
 // Chapter 10
 // ============
 const hornOfGondor = () => {
+  if ($('#Boromir').length===0){
+    console.error("Boromir does not exist");
+    return 0;
+  }
+  if ($('#Uruk-hai').length===0){
+    console.error("The Uruk-hai do not exist");
+    return 0;
+  }
+
   console.log("Riiiiiiicola");
   // 1. create a pop-up alert that the horn of gondor has been blown
     alert("horn of gondor has been blown");
   // 2. Boromir's been killed by the Uruk-hai! Put a linethrough on Boromir's name
-    $('#Boromir').css("text-decoration", "line-through")
+    $('#Boromir').css("text-decoration", "line-through");
   // 3. Tricky: Remove the Uruk-Hai from the Baddies on the page
     $('#Uruk-hai').remove();
+    document.getElementById('Boromir').scrollIntoView();
 };
 
 // COMMIT YOUR WORK
@@ -255,13 +324,23 @@ const hornOfGondor = () => {
 // Chapter 11
 // ============
 const itsDangerousToGoAlone = () => {
+  if ($('#Mordor').length==0){
+    console.error("Mordor does not exist");
+    return 0;
+  }
+  if (  ($('#Frodo').length===0)  ||  ($('#Samwise').length===0)   ){
+    console.error("Frodo or Sam does not exist.");
+    return 0;
+  }
+
+
   console.log("The steps of mount doom");
   // 1. take Frodo and Sam out of the fellowship and move them to Mordor (they don't need to be inside a ul in Mordor)
   $('#Mordor').append($('#Frodo'));
-  $('#Mordor').append($('#Sam'));
+  $('#Mordor').append($('#Samwise'));
   // 2. add a div with an id of 'mount-doom' to Mordor
   $('#Mordor').append(`<div id="mount-doom"/>`);
-
+  document.getElementById('Mordor').scrollIntoView();
 };
 
 // COMMIT YOUR WORK
@@ -271,13 +350,25 @@ const itsDangerousToGoAlone = () => {
 // Chapter 12
 // ============
 const weWantsIt = () => {
+
+  if ($('#baddies').length===0){
+    console.error("baddies do not exist");
+    return 0;
+  }
+  if ($('#the-ring').length===0){
+    console.error("the ring does not exist");
+  }
+
+
   console.log("My precious");
   // 1. Create a div with an id of 'gollum' and add it to Mordor
-  $('#baddies').append('<div id="gollum"/>')
+  if ($('#gollum').length===0)
+    $('#baddies').append('<div id="gollum"/>')
+  else console.warn("Gollum already exists");
   // 2. Move the ring from Frodo and give it to Gollum
   $('#gollum').append($('#the-ring'));
   // 3. Move Gollum into Mount Doom
-
+  document.getElementById('gollum').scrollIntoView();
 };
 
 // COMMIT YOUR WORK
@@ -287,6 +378,11 @@ const weWantsIt = () => {
 // Chapter 13
 // ============
 const thereAndBackAgain = () => {
+    if ($('#shire-residents').length===0){
+      console.error("Shire does not exist or has no homes.");
+      return 0;
+    }
+
     console.log("there's no place like home");
   // 1. remove Gollum and the Ring from the DOM
     $('#gollum').remove();
@@ -296,7 +392,7 @@ const thereAndBackAgain = () => {
   // 3. Move all the hobbits back to the shire
     for (let hobbit of $('.hobbit'))
       $('#shire-residents').append(hobbit);
-
+      document.getElementById('The-Shire').scrollIntoView();
 };
 
 // COMMIT YOUR WORK
