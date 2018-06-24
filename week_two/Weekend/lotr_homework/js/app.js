@@ -125,7 +125,10 @@ const makeBaddies = () => {
   // 2. give each of the baddies a class of "baddy"
     for (let bad of baddies){
       //baddies.append($(`<li id="${bad}" class="baddy">${bad}</li>`));
-      let baddy = document.createElement('li'); baddy.id=bad; baddy.className="baddy"; baddy.innerHTML=bad;
+      let baddyid = bad.replace('The ','');
+      console.log(baddyid)
+      baddyid = baddyid.split(" ")[0];
+      let baddy = document.createElement('li'); baddy.id=baddyid; baddy.className="baddy"; baddy.innerHTML=bad;
       baddiesUL.append(baddy);
     }
   // 3. remember to append them to Mordor
@@ -238,13 +241,13 @@ theBalrog();
 const hornOfGondor = () => {
 
   // 1. create a pop-up alert that the horn of gondor has been blown
-
+    alert("horn of gondor has been blown");
   // 2. Boromir's been killed by the Uruk-hai! Put a linethrough on Boromir's name
-
+    $('#Boromir').css("text-decoration", "line-through")
   // 3. Tricky: Remove the Uruk-Hai from the Baddies on the page
-
+    $('#Uruk-hai').remove();
 };
-
+hornOfGondor();
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 10 complete - horn of gandor blew and Boromir is dead"
 
@@ -254,11 +257,15 @@ const hornOfGondor = () => {
 const itsDangerousToGoAlone = () => {
 
   // 1. take Frodo and Sam out of the fellowship and move them to Mordor (they don't need to be inside a ul in Mordor)
-
+  $('#Mordor').append($('#Frodo'));
+  $('#Mordor').append($('#Sam'));
   // 2. add a div with an id of 'mount-doom' to Mordor
+  $('#Mordor').append(`<div id="mount-doom"/>`);
+ // let mdDiv = document.createElement('div'); mdDiv.id="mount-doom";
+  //$('#Mordor').append(mdDiv);
 
 };
-
+itsDangerousToGoAlone();
 // COMMIT YOUR WORK
 // The commit message should read: "Chapter 11 complete - Sam and Frodo are in Mordor and Mount Doom has been created"
 
