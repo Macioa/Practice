@@ -392,7 +392,7 @@ const thereAndBackAgain = () => {
   // 3. Move all the hobbits back to the shire
     for (let hobbit of $('.hobbit'))
       $('#shire-residents').append(hobbit);
-      document.getElementById('The-Shire').scrollIntoView();
+    document.getElementById('The-Shire').scrollIntoView();
 };
 
 // COMMIT YOUR WORK

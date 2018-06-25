@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CSS animation demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="box"/>
+
+
+    <script>
+        const zoomOut = (e) => { e.currentTarget.className="zoomOut"; e.currentTarget.onclick= zoomIn; }
+        const zoomIn = (e) => { e.currentTarget.className="zoomIn"; e.currentTarget.onclick= zoomOut; };
+
+        for (let i = 0; i<400; i++){
+            let newdiv = document.createElement('div'); newdiv.id="div"+i; newdiv.className="box";
+            newdiv.onclick=zoomIn;
+            $('body').append(newdiv);
+            $(`#div${i}`).css("background-color", `rgb(${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)}`);
+        }
+        </script>
+
+
+
+
+
+
+<script src="js.js"></script>
+</body>
+</html>
