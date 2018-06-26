@@ -1,5 +1,5 @@
 const hungerInterval = 60; //how often hunger decreases in seconds
-const sleepyInterval = 60; //how often sleepiness decreases in seconds
+const sleepinessInterval = 60; //how often sleepiness decreases in seconds
 const boredomInterval = 60; //how often boredom decreases in seconds
 const animationInterval = 5; 
 const ageInterval = 120;    //how often age increases in seconds
@@ -7,31 +7,6 @@ const growthInterval = 5; //how often size increases, by age
 const growthIncrement = .25; //how much char grows in each increment (relative to default size set in css)
 const maxStat = 12; //maximum value for hunger/sleepiness/boredom
  
-
-
-class emotion { // container class for emotion images
-    constructor(name){
-        this.name=name;
-    }
-    setEyes(eyeImgArray){
-        this.eyeImgs=eyeImgArray;
-    }
-    addEyes(eyeImg){
-        this.eyeImgs.append(eyeImg);
-    }
-    setMouths(mouthImgArray){
-        this.mouthImgs=mouthImgArray;
-    }
-    addMouth(mouthImg){
-        this.mouthImgs.append(mouthImg);
-    }
-    getEyeImg(){
-        return this.eyeImgs[Math.floor(Math.random()*this.eyeImgs)];
-    }
-    getMouthImg(){
-        return this.mouthImgs[Math.floor(Math.random()*this.mouthImgs)];
-    }
-}
 
 
 class Tomagotchi {
@@ -48,6 +23,7 @@ class Tomagotchi {
 
         this.scale = .25;
         
+        this.constructHTMLElements();
         this.scaleRender();
         this.ticker = setInterval(this.tick,1000);
     }
@@ -62,7 +38,9 @@ class Tomagotchi {
        this.eyeDiv=document.createElement('div');
        this.eyeDiv.className="eyes";
        this.headDiv.append(this.eyeDiv);
+       console.log(defaultSet, defaultSet.getEyeImg())
        this.eyeImg = defaultSet.getEyeImg();
+       console.log(this.eyeImg)
        this.eyeDiv.style.backgroundImage= `url('img/${this.eyeImg}')`;
        this.eyeDiv.style.left = "100px"; 
        this.eyeDiv.style.top = "145px"; 
@@ -96,7 +74,7 @@ class Tomagotchi {
             this.emotion = "dead";
             this.alive = false;
             console.log(`${this.name} has died.`);
-            this.renderEmotion();
+            //this.renderEmotion();
         }
 
         if (this.tickCount%hungerInterval===0)
@@ -110,8 +88,8 @@ class Tomagotchi {
         if (this.tickCount%growthInterval===0)
             this.scale+=growthIncrement;
 
-        this.renderEmotion();
-        this.scaleRender();
+        //this.renderEmotion();
+        //this.scaleRender();
     }
     renderEmotion(){
         switch (this.emotion){
