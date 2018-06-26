@@ -7,7 +7,16 @@ const growthInterval = 5; //how often size increases, by age
 const growthIncrement = .25; //how much char grows in each increment (relative to default size set in css)
 const maxStat = 12; //maximum value for hunger/sleepiness/boredom
  
+const getImgRelativeSize = (filename) => {
+    let newimg = document.createElement('img');
+    newimg.src=(`img/${filename}`);
+    let width = newimg.naturalWidth;
+    let height = newimg.naturalHeight;
+    console.log((width+height)/2);
+    return ((width+height)/2);
+}
 
+getImgRelativeSize("eye1.png");
 
 class Tomagotchi {
     constructor (Name, headImg) {
@@ -38,9 +47,9 @@ class Tomagotchi {
        this.eyeDiv=document.createElement('div');
        this.eyeDiv.className="eyes";
        this.headDiv.append(this.eyeDiv);
-       console.log(defaultSet, defaultSet.getEyeImg())
+       //console.log(defaultSet, defaultSet.getEyeImg());
        this.eyeImg = defaultSet.getEyeImg();
-       console.log(this.eyeImg)
+       //console.log(this.eyeImg);
        this.eyeDiv.style.backgroundImage= `url('img/${this.eyeImg}')`;
        this.eyeDiv.style.left = "100px"; 
        this.eyeDiv.style.top = "145px"; 

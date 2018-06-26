@@ -24,7 +24,7 @@ class emotion { // container class for emotion images
 
 var defaultSet = new emotion('default');
 defaultSet.setEyes(["eye1.png","eye1.png"]);
-defaultSet.setMouths(["mouth1.png","mouth1.png"]);
+defaultSet.setMouths(["tongue1.png","tongue1.png"]);
 
 var hungry = new emotion('hungry');
 hungry.setEyes(["image1","image2"]);
