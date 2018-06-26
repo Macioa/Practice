@@ -1,12 +1,13 @@
-const hungerInterval = 60;
-const sleepyInterval = 60;
-const boredomInterval = 60;
-const animationInterval = 5;
-const ageInterval = 120;
+const hungerInterval = 60; //how often hunger decreases in seconds
+const sleepyInterval = 60; //how often sleepiness decreases in seconds
+const boredomInterval = 60; //how often boredom decreases in seconds
+const animationInterval = 5; 
+const ageInterval = 120;    //how often age increases in seconds
+const growthInterval = 5; //how often size increases, by age
  
 
 
-class emotion {
+class emotion { // container class for emotion images
     constructor(name){
         this.name=name;
     }
@@ -22,10 +23,10 @@ class emotion {
     addMouth(mouthImg){
         this.mouthImgs.append(mouthImg);
     }
-    getEyes(){
+    getEyeImg(){
         return this.eyeImgs[Math.floor(Math.random()*this.eyeImgs)];
     }
-    getMouth(){
+    getMouthImg(){
         return this.mouthImgs[Math.floor(Math.random()*this.mouthImgs)];
     }
 }
@@ -88,6 +89,7 @@ class Tomagotchi {
             this.emotion = "dead";
             this.alive = false;
             console.log(`${this.name} has died.`)
+            this.renderEmotion();
         }
 
         if (this.tickCount%hungerInterval===0)
@@ -98,8 +100,24 @@ class Tomagotchi {
             this.sleepiness-=1;
         if (this.tickCount%ageInterval===0)
             this.age+=1;
-        
 
+        this.renderEmotion();
+    }
+    renderEmotion(){
+        switch (this.emotion){
+            case "hungry":  this.eyeDiv.style.backgroundImage= `url('img/${hungry.getEyeImg()}')`;
+                            this.mouthDiv.style.backgroundImage= `url('img/${hungry.getMouthImg()}')`;
+                            break;
+            case "sleepy":  this.eyeDiv.style.backgroundImage= `url('img/${sleepy.getEyeImg()}')`;
+                            this.mouthDiv.style.backgroundImage= `url('img/${sleepy.getMouthImg()}')`;
+                            break;
+            case "bored":   this.eyeDiv.style.backgroundImage= `url('img/${bored.getEyeImg()}')`;
+                            this.mouthDiv.style.backgroundImage= `url('img/${bored.getMouthImg()}')`;
+                            break;
+            case "dead":    this.eyeDiv.style.backgroundImage= `url('img/${dead.getEyeImg()}')`;
+                            this.mouthDiv.style.backgroundImage= `url('img/${dead.getMouthImg()}')`;
+                            break;
+        }
     }
 
 }
