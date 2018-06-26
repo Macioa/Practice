@@ -1,7 +1,7 @@
 .toma{
+    position: absolute;
     width: 300px;
     height: 300px;
-
 }
 .head{
     width: 100%;
@@ -29,4 +29,9 @@
     height: 40px;
     z-index:5;
     background-size:cover;
+}
+.nametag{
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
 }
