@@ -57,7 +57,8 @@ class Tomagotchi {
        this.eyeDiv=document.createElement('div');
        this.eyeDiv.className="eyes";
        this.headDiv.append(this.eyeDiv);
-       this.eyeDiv.style.backgroundImage= "url('img/eye1.png')";
+       this.eyeImg = defaultSet.getEyeImg();
+       this.eyeDiv.style.backgroundImage= `url('img/${this.eyeImg}')`;
        this.eyeDiv.style.left = "100px"; 
        this.eyeDiv.style.top = "145px"; 
 
@@ -71,7 +72,8 @@ class Tomagotchi {
        this.mouthDiv=document.createElement('div');
        this.mouthDiv.className="mouth";
        this.headDiv.append(this.mouthDiv);
-       this.mouthDiv.style.backgroundImage= "url('img/mouth1.png')";
+       this.mouthImg = defaultSet.getMouthImg();
+       this.mouthDiv.style.backgroundImage= `url('img/${this.mouthImg}')`;
        this.mouthDiv.style.left = "130px"; 
        this.mouthDiv.style.top = "240px"; 
     }
@@ -88,7 +90,7 @@ class Tomagotchi {
         if (  (this.boredom===0)  ||  (this.hunger===0)   ||  (this.sleepy===0)  ){
             this.emotion = "dead";
             this.alive = false;
-            console.log(`${this.name} has died.`)
+            console.log(`${this.name} has died.`);
             this.renderEmotion();
         }
 
@@ -105,6 +107,9 @@ class Tomagotchi {
     }
     renderEmotion(){
         switch (this.emotion){
+            case "default": this.eyeDiv.style.backgroundImage= `url('img/${this.eyeImg}')`;
+                            this.mouthDiv.style.backgroundImage= `url('img/${this.mouthImg}')`;
+                            break;
             case "hungry":  this.eyeDiv.style.backgroundImage= `url('img/${hungry.getEyeImg()}')`;
                             this.mouthDiv.style.backgroundImage= `url('img/${hungry.getMouthImg()}')`;
                             break;
