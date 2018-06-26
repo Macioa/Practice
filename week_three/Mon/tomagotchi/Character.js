@@ -1,9 +1,35 @@
 const hungerInterval = 60;
 const sleepyInterval = 60;
 const boredomInterval = 60;
-const animationInterval =5;
+const animationInterval = 5;
+const ageInterval = 120;
+ 
 
-const emotion = ["default","crying", "angry", "hungry", "sleepy", "bored"];
+
+class emotion {
+    constructor(name){
+        this.name=name;
+    }
+    setEyes(eyeImgArray){
+        this.eyeImgs=eyeImgArray;
+    }
+    addEyes(eyeImg){
+        this.eyeImgs.append(eyeImg);
+    }
+    setMouths(mouthImgArray){
+        this.mouthImgs=mouthImgArray;
+    }
+    addMouth(mouthImg){
+        this.mouthImgs.append(mouthImg);
+    }
+    getEyes(){
+        return this.eyeImgs[Math.floor(Math.random()*this.eyeImgs)];
+    }
+    getMouth(){
+        return this.mouthImgs[Math.floor(Math.random()*this.mouthImgs)];
+    }
+}
+
 
 class Tomagotchi {
     constructor (Name, headImg) {
@@ -17,6 +43,7 @@ class Tomagotchi {
         this.emotion = "default";
         this.alive = true;
 
+        this.ticker = setInterval(this.tick,1000);
     }
     constructHTMLElements(){
         this.htmlelement = document.createElement('div');
@@ -46,8 +73,6 @@ class Tomagotchi {
        this.mouthDiv.style.backgroundImage= "url('img/mouth1.png')";
        this.mouthDiv.style.left = "130px"; 
        this.mouthDiv.style.top = "240px"; 
-
-
     }
 
     tick(){
@@ -59,7 +84,22 @@ class Tomagotchi {
         else if (this.boredom<5)
             this.emotion="bored";
 
-        if (  (this.boredom===0)  ||  (this.hunger===0)   ||  (this.sleepy===0)  )
+        if (  (this.boredom===0)  ||  (this.hunger===0)   ||  (this.sleepy===0)  ){
+            this.emotion = "dead";
+            this.alive = false;
+            console.log(`${this.name} has died.`)
+        }
+
+        if (this.tickCount%hungerInterval===0)
+            this.hunger-=1;
+        if (this.tickCount%boredomInterval===0)
+            this.boredom-=1;
+        if (this.tickCount%sleepinessInterval===0)
+            this.sleepiness-=1;
+        if (this.tickCount%ageInterval===0)
+            this.age+=1;
+        
+
     }
 
 }
