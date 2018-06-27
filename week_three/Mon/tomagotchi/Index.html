@@ -16,13 +16,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="Emotion.js"></script>
 <script src="character.js"></script>
+
+
 <script>
+
     const tickTomas = (tomas) => {
     for (let toma of tomas){
         toma.tick();
-        toma.travel();
+        }
     }
-}
 
     mytomas = [new Tomagotchi("tim","img/head1.png")];
     const del = setTimeout( function () {mytomas.push(new Tomagotchi("bob","img/head1.png"))}, 5000);
