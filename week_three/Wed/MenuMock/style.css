@@ -1,12 +1,16 @@
 .menuContainer{
     width: 200px;
-
-    border-style: solid;
-}
-.accessButton{
-    margin: auto;
+    position: relative;
     border-style: solid;
     text-align: center;
+}
+.accessButton{
+    width: 20px;
+    border-radius:14px;
+    margin: auto;
+    border-style: ridge;
+    text-align: center;
+    display: inline-block;
 }
 .interactButton{
     display:inline-block;
@@ -15,14 +19,4 @@
     height: 50px;
     width: 50px;
     margin: 4px;
-}
-#feedButton{
-    background-image: url("img/icon/eat.png");
-}
-#playButton{
-    background-image: url("img/icon/play.png");
-}
-#sleepButton{
-    background-image: url("img/icon/sleep.png");
-    visibility: hidden;
 }
