@@ -23,21 +23,21 @@ class emotion { // container class for emotion images
 }
 
 var defaultSet = new emotion('default');
-defaultSet.setEyes(["eye1.png","eye1.png"]);
-defaultSet.setMouths(["tongue1.png","tongue1.png"]);
+defaultSet.setEyes(["eye4.png","eye3.png"]);
+defaultSet.setMouths(["smilemouth4.png","smilemouth3.png","smilemouth2.png"]);
 
 var hungry = new emotion('hungry');
-hungry.setEyes(["image1","image2"]);
-hungry.setMouths(["image1","image2"]);
+hungry.setEyes(["worriedeyes1.png","angryeyes1.png"]);
+hungry.setMouths(["frustrationmouth1.png","openmouth3.png","openmouth4.png", "frustrationmouth1.png"]);
 
 var sleepy = new emotion('sleepy');
-sleepy.setEyes(["image1","image2"]);
-sleepy.setMouths(["image1","image2"]);
+sleepy.setEyes(["tiredeyes1.png", "confusedeyes1.png","confusedeyes3.png"]);
+sleepy.setMouths(["frustrationmouth3.png", "frustrationmouth4.png"]);
 
 var bored = new emotion('bored');  
-bored.setEyes(["image1","image2"]);
-bored.setMouths(["image1","image2"]);
+bored.setEyes(["annoyedeyes2.png","boredeyes2.png", "boredeyes1.png","cryingeyes1.png"]);
+bored.setMouths(["frustrationmouth2.png"]);
 
 var dead = new emotion('bored');
-dead.setEyes(["image1, image2"]);
-dead.setMouths(["image1","image2"]);
+dead.setEyes(["deadeyes1.png","closedeyes1.png"]);
+dead.setMouths(["tongue1.png", "frown.png"]);

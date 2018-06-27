@@ -1,10 +1,10 @@
 const hungerInterval = 1; //how often hunger decreases in seconds
-const sleepinessInterval = 60; //how often sleepiness decreases in seconds
-const boredomInterval = 60; //how often boredom decreases in seconds
+const sleepinessInterval = 1; //how often sleepiness decreases in seconds
+const boredomInterval = 1; //how often boredom decreases in seconds
 const animationInterval = 5; 
 const ageInterval = 120;    //how often age increases in seconds
 const growthInterval = 5; //how often size increases, by age
-const growthIncrement = .25; //how much char grows in each increment (relative to default size set in css)
+const growthIncrement = .1; //how much char grows in each increment (relative to default size set in css)
 const maxStat = 12; //maximum value for hunger/sleepiness/boredom
 const travelIncrement = 25; //number of pixels to travel each increment
 
@@ -39,6 +39,9 @@ class Tomagotchi {
         
         this.constructHTMLElements();
         this.scaleRender();
+
+        this.menu = new menu(this);
+        this.menu.attach(this.htmlelement);
     }
     constructHTMLElements(){
         this.htmlelement = document.createElement('div');
@@ -57,27 +60,22 @@ class Tomagotchi {
        this.eyeImg = defaultSet.getEyeImg();
        //console.log(this.eyeImg);
        this.eyeDiv.style.backgroundImage= `url('img/${this.eyeImg}')`;
-       
-      // this.eyeRelative = 
-      // this.eyeDiv.width = 
-
-       this.eyeDiv.style.left = "100px"; 
-       this.eyeDiv.style.top = "145px"; 
+        this.eyeDiv.style.top = "130px"; 
 
        this.noseDiv=document.createElement('div');
        this.noseDiv.className="nose";
        this.headDiv.append(this.noseDiv);
        this.noseDiv.style.backgroundImage= "url('img/nose1.png')";
-       this.noseDiv.style.left = "140px"; 
-       this.noseDiv.style.top = "180px"; 
+       this.noseDiv.style.left = "135px"; 
+       this.noseDiv.style.top = "130px"; 
 
        this.mouthDiv=document.createElement('div');
        this.mouthDiv.className="mouth";
        this.headDiv.append(this.mouthDiv);
        this.mouthImg = defaultSet.getMouthImg();
        this.mouthDiv.style.backgroundImage= `url('img/${this.mouthImg}')`;
-       this.mouthDiv.style.left = "130px"; 
-       this.mouthDiv.style.top = "240px"; 
+       this.mouthDiv.style.left = "125px"; 
+       this.mouthDiv.style.top = "130px"; 
 
        this.nametagDiv=document.createElement('div');
        this.nametagDiv.className="nametag"
@@ -85,6 +83,8 @@ class Tomagotchi {
        this.htmlelement.append(this.nametagDiv);
 
        $('body')[0].append(this.htmlelement);
+
+       this.eyeDiv.style.left = this.htmlelement.offsetWidth/4+this.eyeDiv.offsetWidth/4-5+"px"; 
     }
 
     tick(){
@@ -95,17 +95,38 @@ class Tomagotchi {
 
         this.tickCount++;
 
-        if (this.boredom<7)
+        if (this.boredom<7){
             this.emotion="bored";
-        else if (this.sleepiness<6)
+            this.menu.readyPlay();
+        }
+        else this.menu.canPlay=false;
+
+        if (this.sleepiness<6){
             this.emotion="sleepy";
-        else if (this.hunger<5)
+            this.menu.readySleep();
+        }
+        else this.menu.canSleep=false;
+
+        if (this.hunger<5){
             this.emotion="hungry";
+            this.menu.readyEat();
+        }
+        else this.menu.canEat=false;
+
+        if (  (this.boredom>=7)  &&  (this.sleepiness>=6)  &&  (this.hunger>=5)  ){
+            this.emotion="default";
+        }
+
+        if (  (this.boredom>=10)  &&  (this.sleepiness>=10)  &&  (this.hunger>=10)  ){
+            this.emotion="happy";
+        }
 
         if (  (this.boredom===0)  ||  (this.hunger===0)   ||  (this.sleepy===0)  ){
             this.emotion = "dead";
             this.alive = false;
             console.log(`${this.name} has died.`);
+            this.menu.htmlelement.remove();
+            this.nametagDiv.innerHTML+=` (dead, ${this.age} years)`;
         }
 
         if (this.tickCount%hungerInterval===0)
@@ -127,8 +148,10 @@ class Tomagotchi {
         if (this.tick===1000)
             this.tick=0;
 
-        //this.renderEmotion();
-        //this.scaleRender();
+        this.renderEmotion();
+        this.scaleRender();
+
+
         if (debug)
             console.log(`${this.name} has ${this.hunger} hunger, ${this.sleepiness} sleepiness, and ${this.boredom} boredom. ${this.name} is ${this.emotion}.`);
     }
@@ -152,19 +175,19 @@ class Tomagotchi {
         }
     }
     scaleRender() {
-        this.htmlelement.style.scale=this.scale;
+        this.htmlelement.style.transform=`scale(${this.scale})`;
     }
-    feed(amount=1){
+    eat(amount=5){
         this.hunger+=amount;
         if (this.hunger>maxStat)
             this.hunger=maxStat;
     }
-    play(amount=1){
+    play(amount=5){
         this.boredom+=amount;
         if (this.boredom>maxStat)
             this.boredom=maxStat;
     }
-    sleep(amount=1){
+    sleep(amount=5){
         this.sleepiness+=amount;
         if (this.sleepiness>maxStat)
             this.sleepiness=maxStat;
