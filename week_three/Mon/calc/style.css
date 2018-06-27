@@ -1,0 +1,38 @@
+body {
+    background-color: lavender;
+  }
+  
+  .btn {
+    height: 50px;
+    width: 50px;
+    margin: 0px;
+    border: 1px solid brown;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  #calc {
+    background-color: pink;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .num-large {
+    width: 112px;
+    border: 1px solid brown;
+    height: 50px;
+    margin: 8px
+  }
+  
+  #display {
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    text-align: right;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
