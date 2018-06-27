@@ -1,0 +1,28 @@
+.menuContainer{
+    width: 200px;
+
+    border-style: solid;
+}
+.accessButton{
+    margin: auto;
+    border-style: solid;
+    text-align: center;
+}
+.interactButton{
+    display:inline-block;
+    border-style: solid;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    margin: 4px;
+}
+#feedButton{
+    background-image: url("img/icon/eat.png");
+}
+#playButton{
+    background-image: url("img/icon/play.png");
+}
+#sleepButton{
+    background-image: url("img/icon/sleep.png");
+    visibility: hidden;
+}

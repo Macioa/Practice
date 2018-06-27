@@ -95,12 +95,12 @@ class Tomagotchi {
 
         this.tickCount++;
 
-        if (this.hunger<5)
-            this.emotion="hungry";
-        else if (this.sleepiness<5)
-            this.emotion="sleepy";
-        else if (this.boredom<5)
+        if (this.boredom<7)
             this.emotion="bored";
+        else if (this.sleepiness<6)
+            this.emotion="sleepy";
+        else if (this.hunger<5)
+            this.emotion="hungry";
 
         if (  (this.boredom===0)  ||  (this.hunger===0)   ||  (this.sleepy===0)  ){
             this.emotion = "dead";
