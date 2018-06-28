@@ -9,7 +9,8 @@ const growthIncrement = .01; //how much char grows in each increment (relative t
 const maxStat = 12; //maximum value for hunger/sleepiness/boredom
 const travelIncrement = 3; //number of pixels to travel each tick
 
-const debug=true;
+
+const debug=false;
  
 class Tomagotchi {
     constructor (Name, headImg, count=1) {
@@ -40,6 +41,9 @@ class Tomagotchi {
 
         this.scaleRender();
         console.log(`${this.name} was born.`)
+
+        this.htmlelement.style.left=Math.floor(Math.random()*window.innerWidth)+"px";
+        this.htmlelement.style.top=Math.floor(Math.random()*window.innerHeight)+"px";
     }
     constructHTMLElements(headImg){
         this.htmlelement = document.createElement('div');
@@ -117,7 +121,7 @@ class Tomagotchi {
             this.emotion="happy";
         }
 
-        if (  (this.boredom===0)  ||  (this.hunger===0)   ||  (this.sleepy===0)  ){
+        if (  (this.boredom===0)  ||  (this.hunger===0)   ||  (this.sleepiness===0)  ){
             this.emotion = "dead";
             this.alive = false;
             console.log(`${this.name} has died.`);
@@ -132,10 +136,10 @@ class Tomagotchi {
                     this.hunger-=1;
         if (this.tickCount%boredomInterval===0)
             if (!Math.floor(Math.random()*3))
-                this.boredom-=1;
+                    this.boredom-=1;
         if (this.tickCount%sleepinessInterval===0)
             if (!Math.floor(Math.random()*3))    
-                this.sleepiness-=1;
+                    this.sleepiness-=1;
 
         if (this.tickCount%ageInterval===0)
             this.age+=1;
