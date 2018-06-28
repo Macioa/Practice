@@ -1,5 +1,7 @@
 
 
+//needs refactor, see readme
+
 class menu {
     constructor(parentCharacter){ 
         if (!parentCharacter instanceof Tomagotchi){

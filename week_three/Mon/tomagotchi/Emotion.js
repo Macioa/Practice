@@ -1,6 +1,9 @@
+//needs refactor, see readme
+
 class emotion { // container class for emotion images
-    constructor(name){
+    constructor(name, stat=null, ){
         this.name=name;
+        this.stat=stat;
     }
     setEyes(eyeImgArray){
         this.eyeImgs=eyeImgArray;

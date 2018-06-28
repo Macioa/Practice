@@ -1,3 +1,5 @@
+//needs refactor, see readme
+
 const hungerInterval = 20; //how often hunger decreases, in ticks
 const sleepinessInterval = 20; //how often sleepiness decreases, in ticks
 const boredomInterval = 20; //how often boredom decreases, in ticks
