@@ -22,6 +22,7 @@ class Tomagotchi {
         this.tickCount=0;
         this.headImg=headImg;
         this.emotion = "default";
+        this.lastEmotion=this.emotion;
         this.lastScaledAge=-1;
         this.alive = true;
 
@@ -146,7 +147,10 @@ class Tomagotchi {
         if (this.tick===1000)
             this.tick=0;
 
-        this.renderEmotion();
+        if (this.emotion!=this.lastEmotion)
+            this.renderEmotion();
+
+        this.lastEmotion=this.emotion;
         this.scaleRender();
 
 
