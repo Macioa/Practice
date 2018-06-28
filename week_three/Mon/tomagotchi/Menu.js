@@ -94,7 +94,6 @@ class menu {
         if (  (this.canPlay) || (this.canEat) || (this.canSleep)  )
             this.accessButton.style.visibility="visible";
         else this.accessButton.style.visibility="hidden";
-        this.htmlelement.style.transform="scale(1)"
     }
     readyPlay(cp=true){
         this.canPlay=cp;

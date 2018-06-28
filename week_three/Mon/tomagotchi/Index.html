@@ -9,7 +9,9 @@
 </head>
 <body>
 
-
+<div class="mainmenu">
+    <input type="text" class="newTomaButton" id="tomaName"><button class="newTomaButton" onclick="makeToma()">Create</button>
+</div>
 
 
 </body>
@@ -20,17 +22,39 @@
 
 
 <script>
-
+    var tomasArray = [];
+    // Run the tick function on all created tomagotchis. Dead tomagotchis will ignore
     const tickTomas = (tomas) => {
     for (let toma of tomas){
         toma.tick();
         }
     }
 
-    mytomas = [new Tomagotchi("tim","img/head1.png")];
-    const del = setTimeout( function () {mytomas.push(new Tomagotchi("bob","img/head1.png"))}, 5000);
+    // Make a new tomagotchi with the name entered in input field
+    const makeToma = () => {
+        let input = document.getElementById('tomaName');
+        let name = input.value;
+        let toma = null;
+        if (name.length){
+            if (Math.floor(Math.random()*2))
+                toma = new Tomagotchi(name, "img/head1.png", tomasArray.length+1);
+            else toma = new Tomagotchi(name,"img/head2.png", tomasArray.length+1);
+            input.value='';
+            tomasArray.push(toma)
+        } else alert("Enter a name for your new Tomagotchi.");
+    }
 
-    const ticker = setInterval( function(){tickTomas(mytomas)},1000 );
+    // Make a new tomagotchi if enter key is pressed
+    const enterKey = (event) => {
+        if(event.key === 'Enter') 
+            makeToma();       
+    }
+
+    // Add keypress event listener to input text field
+    document.getElementById('tomaName').addEventListener('keyup', enterKey);
+
+    // Global tick function for all tomagotchis
+    const ticker = setInterval( function(){tickTomas(tomasArray)},1000 );
 
 </script>
 
