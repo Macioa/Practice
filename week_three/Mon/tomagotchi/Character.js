@@ -1,13 +1,13 @@
-const hungerInterval = 5; //how often hunger decreases in seconds
-const sleepinessInterval = 5; //how often sleepiness decreases in seconds
-const boredomInterval = 5; //how often boredom decreases in seconds
+const hungerInterval = 20; //how often hunger decreases, in ticks
+const sleepinessInterval = 20; //how often sleepiness decreases, in ticks
+const boredomInterval = 20; //how often boredom decreases, in ticks
 //const animationInterval = 5; 
-const ageInterval = 15;    //how often age increases in seconds
+const ageInterval = 40;    //how often age increases, in ticks
 const initialSize = .25;    //initial scale for new tomas
 const growthInterval = 1; //how often size increases, by age
 const growthIncrement = .01; //how much char grows in each increment (relative to default size set in css)
 const maxStat = 12; //maximum value for hunger/sleepiness/boredom
-const travelIncrement = 25; //number of pixels to travel each increment
+const travelIncrement = 3; //number of pixels to travel each tick
 
 const debug=true;
  
@@ -19,7 +19,7 @@ class Tomagotchi {
         this.hunger = 10;
         this.sleepiness = 10;
         this.boredom = 10;
-        this.tickCount=0;
+        this.tickCount=1;
         this.headImg=headImg;
         this.emotion = "default";
         this.lastEmotion=this.emotion;
@@ -124,6 +124,7 @@ class Tomagotchi {
             this.menu.htmlelement.remove();
             this.nametagDiv.innerHTML+=` (dead, ${this.age} years)`;
             this.htmlelement.style.zIndex="0";
+            this.htmlelement.style.opacity=".33";
         }
 
         if (this.tickCount%hungerInterval===0)
@@ -145,7 +146,7 @@ class Tomagotchi {
         }
 
         if (this.tick===1000)
-            this.tick=0;
+            this.tick=1;
 
         if (this.emotion!=this.lastEmotion)
             this.renderEmotion();
