@@ -64,7 +64,7 @@ body {
     z-index: 99;
 }
 .accessButton{
-    width: 20px;
+    width: 3vw;
     border-radius:14px;
     margin: auto;
     border-style: ridge;

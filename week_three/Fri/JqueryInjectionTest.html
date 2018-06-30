@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+    <input type="text" id="textinput" value="<button onclick='alert(`hack`)'>hack button</button>"><button onclick="putOnPage()">Test</button><br>
+    Jquery text
+    <div id="jqoutput"></div><br>
+    DOM innerHTML
+    <div id="domoutput"></div><br>
+    Jquery in, DOM out innerHTML
+    <div id="jqindomout"></div><br>
+    DOM in, Jquery out text
+    <div id="dominjqout"></div><br>
+    DOM in, innertext
+    <div id="innertext"></div><br>
+    DOM in, jquery html
+    <div id="jqhtml"></div><br>
+    <script>
+    const putOnPage = () =>{
+        console.log($('#textinput').val());
+        $('#jqoutput').text($('#textinput').val());
+        document.getElementById('domoutput').innerHTML=document.getElementById('textinput').value;
+        document.getElementById('jqindomout').innerHTML=$('#textinput').val();
+        $('#dominjqout').text(document.getElementById('textinput').value);
+        document.getElementById('innertext').innerText=document.getElementById('textinput').value;
+        $('#jqhtml').html($('#textinput').val());
+    }
+    </script>
+</body>
+</html>

@@ -1,15 +1,15 @@
 //needs refactor, see readme
 
-const hungerInterval = 20; //how often hunger decreases, in ticks
-const sleepinessInterval = 20; //how often sleepiness decreases, in ticks
-const boredomInterval = 20; //how often boredom decreases, in ticks
+const hungerInterval = 30; //how often hunger decreases, in ticks
+const sleepinessInterval = 30; //how often sleepiness decreases, in ticks
+const boredomInterval = 30; //how often boredom decreases, in ticks
 //const animationInterval = 5; 
 const ageInterval = 40;    //how often age increases, in ticks
 const initialSize = .25;    //initial scale for new tomas
 const growthInterval = 1; //how often size increases, by age
 const growthIncrement = .01; //how much char grows in each increment (relative to default size set in css)
 const maxStat = 12; //maximum value for hunger/sleepiness/boredom
-const travelIncrement = 3; //number of pixels to travel each tick
+const travelIncrement = 1; //number of pixels to travel each tick
 
 
 const debug=false;
@@ -81,7 +81,7 @@ class Tomagotchi {
 
        this.nametagDiv=document.createElement('div');
        this.nametagDiv.className="nametag"
-       this.nametagDiv.innerHTML=this.name;
+       this.nametagDiv.innerText=this.name;
        this.htmlelement.append(this.nametagDiv);
 
        $('body')[0].append(this.htmlelement);
