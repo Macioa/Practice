@@ -25,6 +25,9 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script>
+    //async: lively-bushes.surge.
+    //sync: sore-food.surge.sh
+    
 
     let leftButton = document.getElementById('left');
     leftButton.innerText="<";
@@ -34,17 +37,21 @@
     let index = 0;
 
     let images = [];
+
     
-    for (let i = 1; i<=5; i++)
-    {   
-        console.log('loading');
+    const synchLoad = (i=1) => {
         let newImage = document.createElement('img');
-        newImage.onload=function(){console.log(`${this.src} loaded`)};
+        newImage.onload=function(){
+            console.log(`${this.src} loaded. Loading next image.`);
+            if (i<5)
+                synchLoad(i+1)
+        };
         newImage.style.width="600px"; newImage.style.height="500px"
         newImage.src=`resources/${i}.jpg `;
         newImage.id=`image${i}`;
-        images.push(newImage)
+        images.push(newImage);
     }
+    synchLoad();
 
     const nextImage = (event) => {
         $(`#image${index+1}`).detach();
