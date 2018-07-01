@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Intentionally Oversized Images</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<style>
+
+</style>
+
+<body>
+
+    
+<img src="" id="myImage">
+
+
+</body>
+
+<script>
+    let images = [];
+    for (let i = 1; i<=5; i++)
+    {   
+        console.log('loading');
+        let newImage = new Image();
+        newImage.onload=function(){console.log('loaded')};
+        newImage.src=`resources/${i}.jpg `;
+    }
+    for (let i of images)
+        console.log(i);
+</script>
+</html>
