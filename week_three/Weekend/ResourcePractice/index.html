@@ -20,11 +20,10 @@
 <body>
 
 <button id="left"></button>
-<img src="" id="myImage" width="600px" height="500px" onload="console.log(`${this.src} loaded`)">
 <button id="right"></button>
 
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script>
 
     let leftButton = document.getElementById('left');
@@ -35,16 +34,20 @@
     let index = 0;
 
     let images = [];
+    
     for (let i = 1; i<=5; i++)
     {   
         console.log('loading');
-        let newImage = new Image();
+        let newImage = document.createElement('img');
         newImage.onload=function(){console.log(`${this.src} loaded`)};
+        newImage.style.width="600px"; newImage.style.height="500px"
         newImage.src=`resources/${i}.jpg `;
+        newImage.id=`image${i}`;
         images.push(newImage)
     }
 
     const nextImage = (event) => {
+        $(`#image${index+1}`).detach();
         switch (event.currentTarget.innerText){
             case "<": if (index>0)
                         index--;
@@ -54,8 +57,8 @@
                         index++;
                       else index = 0;
         }
-        document.getElementById('myImage').src=images[index].src;
-
+        document.getElementsByTagName('body')[0].insertBefore(images[index], document.getElementById('right'));
+        console.log(images[index])
     }
 
     leftButton.onclick=nextImage;
@@ -63,4 +66,16 @@
 
 
 </script>
+<footer>
+    <br>
+        Photo 1 by Donald Tong from Pexels
+    <br>
+        Photo 2 by Min An from Pexels
+    <br>
+        Photo 3 by Arnesh Yadram from Pexels
+    <br>
+        Photo 4 by Juan Pablo Arenas from Pexels
+    <br>
+        Photo 5 by Nika Kakalashvili from Pexels
+</footer>
 </html>
