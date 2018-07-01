@@ -8,27 +8,59 @@
 </head>
 
 <style>
+    button{
+        display: inline-block;
+    }
+    img{
+        display: inline-block;
+    }
 
 </style>
 
 <body>
 
-    
-<img src="" id="myImage">
-
+<button id="left"></button>
+<img src="" id="myImage" width="600px" height="500px" onload="console.log(`${this.src} loaded`)">
+<button id="right"></button>
 
 </body>
 
 <script>
+
+    let leftButton = document.getElementById('left');
+    leftButton.innerText="<";
+    let rightButton = document.getElementById('right');
+    rightButton.innerText=">";
+
+    let index = 0;
+
     let images = [];
     for (let i = 1; i<=5; i++)
     {   
         console.log('loading');
         let newImage = new Image();
-        newImage.onload=function(){console.log('loaded')};
+        newImage.onload=function(){console.log(`${this.src} loaded`)};
         newImage.src=`resources/${i}.jpg `;
+        images.push(newImage)
     }
-    for (let i of images)
-        console.log(i);
+
+    const nextImage = (event) => {
+        switch (event.currentTarget.innerText){
+            case "<": if (index>0)
+                        index--;
+                      else index = images.length-1;
+                      break;
+            case ">": if (index<images.length-1)
+                        index++;
+                      else index = 0;
+        }
+        document.getElementById('myImage').src=images[index].src;
+
+    }
+
+    leftButton.onclick=nextImage;
+    rightButton.onclick=nextImage;
+
+
 </script>
 </html>
