@@ -1,0 +1,1 @@
+{ name: "superman", powers: ['flight', 'invulnerability', 'x-ray vision']}
