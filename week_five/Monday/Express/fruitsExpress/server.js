@@ -3,6 +3,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const Fruits = require('./models/fruits');
 
+var methodOverride = require('method-override');
+//...
+//after app has been defined
+//use methodOverride.  We'll be adding a query parameter to our delete form named _method
+app.use(methodOverride('_method'));
+
 //http://localhost:3000/fruits/0
 
 
@@ -47,6 +53,16 @@ app.post('/fruits', (req, res) =>{
 //create new route
 app.get('/fruits/new', (req, res) =>{
     res.render('new.ejs');
+});
+
+app.get('/fruits/:index/edit', function(req, res){
+	res.render(
+		'edit.ejs', //render views/edit.ejs
+		{ //pass in an object that contains
+			fruit: fruits[req.params.index], //the fruit object
+			index: req.params.index //... and its index in the array
+		}
+	);
 });
 
 
