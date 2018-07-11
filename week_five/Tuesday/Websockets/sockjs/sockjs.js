@@ -1,1 +1,0 @@
-//https://github.com/sockjs/sockjs-client/blob/master/README.md
