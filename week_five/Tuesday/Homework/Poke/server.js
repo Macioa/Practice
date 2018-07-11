@@ -9,8 +9,12 @@ console.log(pokeList)
 //server get, url string, request, response
 
 server.get('/pokemon/', (request, response) =>{
-    response.send(pokeList);
-    response.render('index.ejs', pokeList);
-})
+    // /response.send(pokeList);
+    response.render('index.ejs', { pokeList: pokeList} );
+});
 
-server.listen(port, function(){ console.log(`server listening on ${port}`) })
+server.get('/pokemon/:id', (request, response) =>{
+    response.render('show.ejs', { poke : pokeList[request.params.id] });   
+});
+
+server.listen(port, function(){ console.log(`server listening on ${port}`) });

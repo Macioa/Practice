@@ -8,7 +8,13 @@
 
 </head>
 <body>
-<h1>PokeList</h1>
-<h3><%= pokeList %><h3>
+<--<h1><%=pokeList%></h1>-->
+
+
+    <%  for (let poke of pokeList){ %> 
+        <ul><%= poke.name %> </ul> 
+     <% } %>
+
+
 
 </form>
