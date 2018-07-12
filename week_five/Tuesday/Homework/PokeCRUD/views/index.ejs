@@ -14,9 +14,11 @@
 <ul>
 
     <%  for (let i = 0; i < pokeList.length; i++){ %> 
-        <li><a href="/pokemon/<%=i%>" ><%= pokeList[i].name %></a>
+        <li><a href="/pokemon/<%=i%>/edit" ><%= pokeList[i].name %></a>
     <% } %>
 
+    <br><br>
+    <h3><a href="/pokemon/create">Create New</a></h3>
 </ul>
 
 
