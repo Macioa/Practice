@@ -13,8 +13,8 @@
 
 <ul>
 
-    <%  for (let poke of pokeList){ %> 
-        <li><%= poke.name %>  
+    <%  for (let i = 0; i < pokeList.length; i++){ %> 
+        <li><a href="/pokemon/<%=i%>" ><%= pokeList[i].name %></a>
     <% } %>
 
 </ul>
