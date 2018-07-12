@@ -11,12 +11,6 @@ var pokeList = require('./model/pokemon');
 console.log(pokeList)
 //server get, url string, request, response, function
 
-//Delete
-server.delete('/pokemon/:index', (request, response) =>{
-    //console.log(request.params.index);
-    pokeList.splice(request.params.index, 1);
-    response.redirect('/pokemon');
-})
 
 //Create
 server.get('/pokemon/create', (request, response) =>{
@@ -59,6 +53,12 @@ server.put('/pokemon/:index', (request, response) =>{
 });
 
 
+//Delete
+server.delete('/pokemon/:index', (request, response) =>{
+    //console.log(request.params.index);
+    pokeList.splice(request.params.index, 1);
+    response.redirect('/pokemon');
+})
 
 
 server.listen(port, function(){ console.log(`server listening on ${port}`) });
