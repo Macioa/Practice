@@ -12,11 +12,12 @@ console.log(pokeList)
 //server get, url string, request, response, function
 
 //Delete
-server.delete('/pokemon/:index'), (request, response) =>{
-    console.log(request.params.index);
-    pokeList = pokeList.splice(request.params.index, 1);
-    //server.redirect('/pokemon/');
-}
+server.delete('/pokemon/:index', (request, response) =>{
+    //console.log(request.params.index);
+    pokeList.splice(request.params.index, 1);
+    response.redirect('/pokemon');
+})
+
 //Create
 server.get('/pokemon/create', (request, response) =>{
     response.render('create.ejs', {});
