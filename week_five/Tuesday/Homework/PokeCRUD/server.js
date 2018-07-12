@@ -7,12 +7,20 @@ const server = express();
 
 var pokeList = require('./model/pokemon');
 console.log(pokeList)
-//server get, url string, request, response
+//server get, url string, request, response, function
 
 
 //Create
-server.put('/pokemone/create', (request, response) =>{
+server.get('/pokemon/create', (request, response) =>{
+    response.render('create.ejs', {});
+});
+
+server.post('/pokemon', (request, response) =>{
+    console.log(request.body);
+    //response.render('create.ejs');
+    let newPoke = { 'name' : request.body.name, 'img' : request.body.img }
     pokeList.push(request.body);
+    console.log('complete');
 })
 
 //Read
