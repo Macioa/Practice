@@ -3,6 +3,15 @@ const db = mongoose.connection;
 const Article = require('./model/article');
 
 
+//https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+//add mongo install directory to system environment variables
+//check database directory exists
+//admin cmd
+//"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --dbpath="c:\data\db"
+//[initandlisten] waiting for connections on port 27017
+
+
+
 //mongoose.connection
 mongoose.connect('mongodb://localhost:27017/article');
 

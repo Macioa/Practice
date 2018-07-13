@@ -14,7 +14,7 @@ console.log(pokeList)
 
 //Create
 server.get('/pokemon/create', (request, response) =>{
-    response.render('create.ejs', {});
+    response.render('create.ejs', {} );
 });
 
 server.post('/pokemon', (request, response) =>{
@@ -30,7 +30,6 @@ server.get('/pokemon/', (request, response) =>{
 });
 
 server.get('/pokemon/:index', (request, response) =>{
-    console.log(pokeList[request.params.index]);
     response.render('show.ejs', { 
         poke : pokeList[request.params.index],
         index: request.params.index
@@ -46,8 +45,7 @@ server.get('/pokemon/:index/edit', (request, response) =>{
 });
 
 server.put('/pokemon/:index', (request, response) =>{
-    let newPoke = {'name' : request.body.name, 'img' : request.body.img};
-    console.log(newPoke);
+    let newPoke = { 'name' : request.body.name, 'img' : request.body.img };
     pokeList[request.params.index] = newPoke;
     response.redirect('/pokemon');
 });
@@ -55,10 +53,9 @@ server.put('/pokemon/:index', (request, response) =>{
 
 //Delete
 server.delete('/pokemon/:index', (request, response) =>{
-    //console.log(request.params.index);
     pokeList.splice(request.params.index, 1);
     response.redirect('/pokemon');
-})
+});
 
 
 server.listen(port, function(){ console.log(`server listening on ${port}`) });

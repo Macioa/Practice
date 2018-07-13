@@ -1,0 +1,15 @@
+method delete as put request
+method edit(update) as put request
+
+
+ga.co/profile
+embed resume in portfolio
+have an external download link for resume
+
+explain project
+
+at least 3 strong projects
+
+ga profile, two peers with feedback on their resumes, peer feedback on final versions of brand statement
+portfolio domain name.
+write one post on medium or linked in.

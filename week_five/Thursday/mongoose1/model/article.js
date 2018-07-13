@@ -13,7 +13,6 @@ const articleSchema = new schema({
     hidden: {
         votes: Number,
         favs: Number
-
     }
 })
 

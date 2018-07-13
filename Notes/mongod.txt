@@ -1,0 +1,32 @@
+ps -a | grep mongod
+grep mongod
+show db - show active dbs
+use dataBaseName - db.createCollection('dataBaseName') - create db
+show collections - 
+
+//use insert one and insert many
+db.dataBaseName.insert(
+	[
+	{name: 'personsName', property: 'value'}, 
+	{name: 'otherPersonsName', property: 'value1'}, 
+	{name: 'thirdPersonsName', property: 'value2'}
+	]);
+
+db.dataBaseName.find()
+db.dataBaseName.find().pretty()
+db.dataBaseName.find( {property:'value2'} ).pretty()
+db.dataBaseName.update( {property: 'value'}, { $set: {property: 'newValue'} } );
+
+db.dataBaseName.find( {property:'value2'} ).pretty()
+dp.dataBaseName.drop() - returns true if connection to collection dropped
+
+use.dataBaseName
+
+db.createCollection('employees') - employees
+
+-----------------------------------------------------------------------------------
+
+mongoose
+
+
+
