@@ -12,7 +12,17 @@ router.get('/', (req, res) =>{
 
 })*/
 
-
+router.get('/', (req, res) =>{
+    Fruits.find({}, (err, allFruits)=>{
+        if (err){
+            res.send(err);
+        } else {
+            res.render('index.js', {
+                fruits: allFruits
+             });
+        }
+    });
+});
 
 
 router.post('/', (req, res) =>{
@@ -31,18 +41,29 @@ router.get('/new', (req, res) =>{
     res.render('new.ejs');
 });
 
-router.get('/:index/edit', function(req, res){
-	res.render(
+router.get('/:ind/edit', function(req, res){
+
+    Fruits.findById(req.params.id, (err, foundFruit) =>{
+        res.render('edit.ejs'), {
+            fruit: foundFruit
+        }
+    });
+	/*res.render(
 		'edit.ejs', //render views/edit.ejs
 		{ //pass in an object that contains
 			fruit: Fruits[req.params.index], //the fruit object
-			index: req.params.index //... and its index in the array
 		}
-	);
+	);*/
 });
 
-router.delete('/:index', (req, res) =>{
-    Fruits.splice(req.params.index, 1);
+router.delete('/:id', (req, res) =>{
+    Fruits.findByIdAndRemove(req.params.id, (err, deletedFruit)=>{
+        if (err){
+            console.log(err);
+        }else {
+            console.log(deletedFruit, 'fruit deleted');
+        }
+    })
     res.redirect('/');
 })
 
@@ -52,7 +73,14 @@ router.put('/:index', (req, res) => { //:index is the index of our fruits array 
     } else { //if not checked, req.body.readyToEat is undefined
         req.body.readyToEat = false;
     }
-	Fruits[req.params.index] = req.body; //in our fruits array, find the index that is specified in the url (:index).  Set that element to the value of req.body (the input data)
+	Fruits.create(req.body), (err, createdFruit)=>{
+        if (err){
+            console.log(err);
+        } else {
+            console.log(createdFruit);
+            res.redirect('/fruits');
+        }
+    }; //in our fruits array, find the index that is specified in the url (:index).  Set that element to the value of req.body (the input data)
 	res.redirect('/'); //redirect to the index page
 });
 
@@ -60,8 +88,9 @@ router.put('/:index', (req, res) => { //:index is the index of our fruits array 
 //use query params
 // Show route - shows one item from the model
 
-router.get('/:index', (request, response) => {    
+router.get('/:id', (request, response) => {    
     console.log (request.params);
+});
 //response.send(  `this is a ${ Fruits[request.params.index] }`  );  
 
 //edit route = to display and edit an individual fruit
@@ -73,10 +102,11 @@ router.get('/:index', (request, response) => {
 })*/
 
 //render sends an ejs template to the client
-response.render('show.ejs',{
-    fruit: Fruits[request.params.index]
-    });
-});
+response.render('show.ejs', {
+    //fruit: Fruits[request.params.index]
+    fruit: Fruits.findById()
+    }
+);
 
 
 module.exports = router;

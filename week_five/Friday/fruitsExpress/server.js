@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 var methodOverride = require('method-override');
 
-
+require('.db/db');
 //...
 //after app has been defined
 //use methodOverride.  We'll be adding a query parameter to our delete form named _method

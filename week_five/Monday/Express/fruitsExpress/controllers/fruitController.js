@@ -52,8 +52,19 @@ router.put('/:index', (req, res) => { //:index is the index of our fruits array 
     } else { //if not checked, req.body.readyToEat is undefined
         req.body.readyToEat = false;
     }
-	Fruits[req.params.index] = req.body; //in our fruits array, find the index that is specified in the url (:index).  Set that element to the value of req.body (the input data)
-	res.redirect('/'); //redirect to the index page
+	//Fruits[req.params.index] = req.body; //in our fruits array, find the index that is specified in the url (:index).  Set that element to the value of req.body (the input data)
+    Fruits.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedFruit)=>{
+        if (err){
+            res.send(err);
+        } else {
+            res.redirect('/fruits');
+        }
+
+
+    });// 'new: true' = return updated object
+    
+    
+    res.redirect('/'); //redirect to the index page
 });
 
 
@@ -72,8 +83,14 @@ router.get('/:index', (request, response) => {
     });
 })*/
 
+router.get('/:id/edit', (request, response) =>{
+    Fruits.findById(req.params.id, (err, foundFruit) =>{
+        fuit: foundFruit
+    })
+})
+
 //render sends an ejs template to the client
-response.render('show.ejs',{
+response.render('show.ejs', {
     fruit: Fruits[request.params.index]
     });
 });
