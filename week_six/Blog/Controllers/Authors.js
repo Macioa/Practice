@@ -72,10 +72,10 @@ router.put('/:id', (req, res) =>{
             console.error(chalk.red(err));
             console.error(chalk.red('Could not update author id ')+chalk.grey(req.params.id));
 		} else {
-			console.log(chalk.green('Updated autho id ')+chalk.grey(req.params.id));
+			console.log(chalk.green('Updated author id ')+chalk.grey(req.params.id));
 			res.redirect('/');
         }
-    })
+    });
 });
 
 module.exports = router;

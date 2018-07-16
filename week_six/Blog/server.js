@@ -17,6 +17,8 @@ app.use(bodyparser.urlencoded({encoded: false}));
 const authorsController = require('./Controllers/authors');
 app.use('/authors', authorsController);
 
+const articlesController = require('./Controllers/articles');
+app.use('/articles', articlesController);
 
 app.get('/', (req, res) =>{
     res.render('index.ejs');
