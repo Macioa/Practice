@@ -7,28 +7,25 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-
+    
     <header>
-        <h1>Authors</h1>
+        <h1>Edit <%=author.name%></h1>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/authors/new">Create new Author</a>
+                <li><a href="/authors">Authors Index</a></li>
             </ul>
         </nav>
-
     </header>
-    
+
     <main>
-        <h2>List of Authors</h2>
-        <ul>
-            <% for (let author of authors){ %>
-                <li><a href="/authors/<%=author._id%>"><%=author.name%></a>   <a href="/authors/<%=author._id%>/edit">Edit</a></li>
-            <% } %>
-        </ul>
+        <h2>Author attributes</h2>
+        <form action ="/authors/<%=author._id%>?_method=PUT" method="POST">
+            <input type="text" name="name" value="<%=author.name%>">
+            
+            <input type="submit">
+        </form>
     </main>
-
-
-
+    
     </body>
 </html>
