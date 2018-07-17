@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+
 const Article = require('../models/articles')
+const Author = require('../models/authors')
 
 //show all authors created in author index
 //=======================================================
@@ -17,9 +19,13 @@ router.get('/', (req, res) => {
 
 //=======================================================
 
-router.get('/new', (req, res) => {
-  res.render('articles/new.ejs')
-})
+router.get('/new', (req, res)=>{
+    Author.find({}, (err, allAuthors)=>{
+        res.render('articles/new.ejs', {
+            authors: allAuthors
+        });
+    });
+});
 
 
 
