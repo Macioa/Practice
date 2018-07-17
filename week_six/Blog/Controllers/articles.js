@@ -76,18 +76,18 @@ router.put('/:id', (req, res) => {
 
 
 
-//=========================================
 
-router.post('/', (req, res) => {
-  console.log(req.body)
 
-  Article.create(req.body, (err, createdArticle) => {
-  console.log(createdArticle, 'this is the createdArticle')
-  res.redirect('/articles');
-  })
-  //we are just doing this to see if server is receiving request
-  // res.send('server received the request')
-})
+router.post('/', (req, res)=>{
+    Author.findById(req.body.authorId, (err, foundAuthor)=>{
+        Article.create(req.body, (err, createdArticle)=>{ 
+            foundAuthor.articles.push(createdArticle);
+            foundAuthor.save((err, data)=>{
+                res.redirect('/articles');
+            });
+        });
+    });
+});
 
 
 
