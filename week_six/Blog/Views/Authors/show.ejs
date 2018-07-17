@@ -23,6 +23,9 @@
         <section>
             <h2>Author Attributes</h2>
                 <ul>
+                    <% for(let article of author.articles){%>
+                        <li><a href="/articles/<%=article._id%>"><%=article.title%></a></li>
+                    <%}%>
                     <li>Name: <%=author.name%></li>
                 </ul>
         </section>

@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const Article = require('../Models/articles');
+const Authors = require('../models/authors')
+
 const chalk = require('chalk');
 
 router.get('/', (req, res) =>{
@@ -15,31 +17,46 @@ router.get('/', (req, res) =>{
 });
 
 router.get('/new', (req, res) =>{
-    res.render('articles/new.ejs');
+    Authors.find({}, (err, allAuthors)=>{
+        res.render('articles/new.ejs',{
+            authors: allAuthors
+        });
+    });
 });
 
-router.get('/:id', (req, res) =>{
-    Article.findById(req.params.id, (err, article)=>{
-        if (article){
-            res.render('articles/show.ejs', {
-                article: article
-            })
-        } else
-        console.error(chalk.red('Could not find article with id ')+chalk.grey(`${req.params.id}`));
-    })
-})
+// display the authoer with a link on the article 
 
-router.post('/', (req, res) =>{
-    console.log(req.body);
-    Article.create(req.body, (err, createdArticle) =>{
-        if (err){
-            console.error(err)
-        }
-        else {
-            console.log(createdArticle);
-            res.redirect('/');
-        }
+router.get('/:id', (req, res) =>{
+    Article.findById(req.params.id, (err, foundArticle)=>{
+        Author.findOne({'articles._id':req.params.id}, (err, foundAuthor)=>{
+            res.render('articles/show.ejs',{
+                article: foundArticle,
+                author: foundAuthor
+            });
+        });
     });
+});
+
+//create a new article and push a copy into the author's article array
+router.post('/', (req, res) =>{
+    Authors.findById(req.body.authorId, (err, foundAuthor)=>{
+        Article.create(req.body, (err, createdArticle) =>{
+            if (err){
+                console.error(err)
+            }
+            else {
+                foundAuthor.articles.push(createdArticle);
+                foundAuthor.save((err,data)=>{
+                    res.redirect('/articles');
+                })
+                console.log(createdArticle);
+                res.redirect('/');
+            }
+        });
+    })
+
+    console.log(req.body);
+
     //res.send('server received request');
     //res.redirect('/');
    // res.send('received request');

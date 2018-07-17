@@ -46,7 +46,7 @@ router.post('/', (req, res) =>{
 });
 
 router.delete('/:id', (req, res) =>{
-    Author.findByIdAndDelete(req.params.id, (err, updatedAuthor) =>{
+    Author.findByIdAndDelete(req.params.id, req.body, {new:true}, (err, updatedAuthor) =>{
 		if(err) {
             console.error(chalk.red(err));
             console.error(chalk.red('Could not delete author id ')+chalk.grey(''));

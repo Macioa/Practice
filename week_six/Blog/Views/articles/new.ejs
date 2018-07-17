@@ -20,6 +20,14 @@
 		</header>
 		<main>
 			<form action="/articles" method="post">
+				<select name="authorId">
+					<%for (let i=0; i<allAuthors.length; i++){%>
+						<option value="<%=allAuthors[i]._id%>"></option>
+						<%}%>
+				</select>
+
+
+
 				<input type="text" name="title"/><br/>
 				<textarea name="body"></textarea><br/>
 				<input type="submit" value="Publish Article"/>
