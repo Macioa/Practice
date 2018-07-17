@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const Article = require('./articles.js');
+const Article = require('./articles');
 
 const authorSchema = mongoose.Schema({
 	name: String,
-	articles: [Article.schema]
-});
+	articles: [Article],
+})
 
 const Author = mongoose.model('Author', authorSchema);
 

@@ -13,12 +13,12 @@ app.use(bodyparser.urlencoded({encoded: false}));
 
 //app.use(bodyparcer);
 
+const articlesController = require('./Controllers/Articles');
+app.use('/articles', articlesController);
 
-const authorsController = require('./Controllers/authors');
+const authorsController = require('./Controllers/Authors');
 app.use('/authors', authorsController);
 
-const articlesController = require('./Controllers/articles');
-//app.use('/articles', articlesController);
 
 app.get('/', (req, res) =>{
     res.render('index.ejs');

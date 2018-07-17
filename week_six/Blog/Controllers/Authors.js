@@ -1,81 +1,104 @@
 const express = require('express');
 const router = express.Router();
+const Author = require('../models/authors')
 
-const Author = require('../Models/authors');
-const chalk = require('chalk');
+//show all authors created in author index
+//=======================================================
+router.get('/', (req, res) => {
+  Author.find({}, (err, foundAuthors) => {
 
-router.get('/', (req, res) =>{
-    Author.find({}, (err, authors) =>{
-        if (err)
-            console.error(err);
-        res.render('authors/index.ejs', {
-            authors: authors
-        });
-    });
-});
 
-router.get('/new', (req, res) =>{
-    res.render('authors/new.ejs');
-});
-
-router.get('/:id', (req, res) =>{
-    Author.findById(req.params.id, (err, author)=>{
-        if (author){
-            res.render('authors/show.ejs', {
-                author: author
-            })
-        } else
-        console.error(chalk.red('Could not find author with id ')+chalk.grey(`${req.params.id}`));
+    res.render('authors/index.ejs', {
+      authors: foundAuthors
     })
+  })
+
 })
 
-router.post('/', (req, res) =>{
-    console.log(req.body);
-    Author.create(req.body, (err, createdAuthor) =>{
-        if (err){
-            console.error(err)
-        }
-        else {
-            console.log(createdAuthor);
-            res.redirect('/');
-        }
-    });
-    //res.send('server received request');
-    res.redirect('/');
-    res.send('received request');
-});
+//=======================================================
 
-router.delete('/:id', (req, res) =>{
-    Author.findByIdAndDelete(req.params.id, req.body, {new:true}, (err, updatedAuthor) =>{
-		if(err) {
-            console.error(chalk.red(err));
-            console.error(chalk.red('Could not delete author id ')+chalk.grey(''));
-		} else {
-			console.log(chalk.green('Deleted author id ')+chalk.grey(req.params.id));
-			res.redirect('/');
-        }
-    })
-});
-
-
-router.get('/:id/edit', (req,res)=>{
-    Author.findById(req.params.id, (err, author)=>{
-        res.render('authors/edit.ejs', {
-            author: author
-        })
-    })
+router.get('/new', (req, res) => {
+  res.render('authors/new.ejs')
 })
 
-router.put('/:id', (req, res) =>{
-    Author.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedAuthor) => {
-		if(err) {
-            console.error(chalk.red(err));
-            console.error(chalk.red('Could not update author id ')+chalk.grey(req.params.id));
-		} else {
-			console.log(chalk.green('Updated author id ')+chalk.grey(req.params.id));
-			res.redirect('/');
-        }
+
+
+//=================================================
+// Show Route
+router.get('/:id', (req, res) => {
+
+  // Render is when you want to send
+  // an ejs template to the client
+  Author.findById(req.params.id, (err, foundAuthor) => {
+      res.render('authors/show.ejs', {
+      author: foundAuthor// This creates
+      // a "author" variable in the show page
     });
+  })
+
 });
+
+//===================================
+
+router.get('/:id/edit', (req, res) => {
+  Author.findById(req.params.id, (err, foundAuthor) => {
+    res.render('authors/edit.ejs', {
+      author: foundAuthor
+    })
+  })
+})
+
+
+//=========================================
+router.put('/:id', (req, res) => {
+  console.log(' am I hitting the put route') //
+  // If it is hitting the route, I want to see
+  console.log(req.body)
+
+
+  Author.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedAuthor) => {
+    if(err){
+      res.send(err);
+    } else {
+        // Check to see if it is updating correctly
+        console.log(updatedAuthor)
+        res.redirect('/authors');
+    }
+  })
+
+});
+
+
+
+//=========================================
+
+router.post('/', (req, res) => {
+  console.log(req.body)
+
+Author.create(req.body, (err, createdAuthor) => {
+  console.log(createdAuthor, 'this is the createdAuthor')
+  res.redirect('/authors');
+  })
+  //we are just doing this to see if server is receiving request
+  // res.send('server received the request')
+})
+
+// Delete Route
+//==========================================
+
+router.delete('/:id', (req, res) => {
+
+  // Delete a specific fruit
+  console.log(req.params.id, ' this is params in delete')
+  Author.findByIdAndRemove(req.params.id, (err, deletedAuthor) => {
+    if(err){
+      console.log(err, ' this is error in delete')
+      res.send(err);
+    } else {
+      console.log(deletedAuthor, ' this is deletedauthor');
+      res.redirect('/authors');
+    }
+  });
+})
 
 module.exports = router;
