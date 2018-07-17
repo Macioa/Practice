@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 })
 
-//=======================================================
+
 
 router.get('/new', (req, res)=>{
     Author.find({}, (err, allAuthors)=>{
@@ -29,22 +29,18 @@ router.get('/new', (req, res)=>{
 
 
 
-//=================================================
-// Show Route
-router.get('/:id', (req, res) => {
 
-  // Render is when you want to send
-  // an ejs template to the client
-  Article.findById(req.params.id, (err, foundArticle) => {
-      res.render('articles/show.ejs', {
-      article: foundArticle// This creates
-      // a "author" variable in the show page
+router.get('/:id', (req, res)=>{
+    Article.findById(req.params.id, (err, foundArticle)=>{
+        Author.findOne({'articles._id':req.params.id}, (err, foundAuthor)=>{
+            res.render('articles/show.ejs', {
+                author:foundAuthor,
+                article: foundArticle
+            });
+        })
     });
-  })
-
 });
 
-//===================================
 
 router.get('/:id/edit', (req, res) => {
   Article.findById(req.params.id, (err, foundArticle) => {
