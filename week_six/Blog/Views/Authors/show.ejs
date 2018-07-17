@@ -21,14 +21,13 @@
 
     <main>
         <section>
-            <h2>Author Attributes</h2>
-                <ul>
-                    <% for(let article of author.articles){%>
-                        <li><a href="/articles/<%=article._id%>"><%=article.title%></a></li>
-                    <%}%>
-                    <li>Name: <%=author.name%></li>
-                </ul>
-        </section>
+        <h2>Articles Written By This Author:</h2>
+        <ul>
+            <% for(let i = 0; i < author.articles.length; i++){ %>
+                <li><a href="/articles/<%=author.articles[i]._id%>"><%=author.articles[i].title%></a></li>
+            <% } %>
+        </ul>
+         </section>
 
 
     <br><br>

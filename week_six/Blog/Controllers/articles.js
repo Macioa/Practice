@@ -17,7 +17,16 @@ router.get('/', (req, res) => {
 
 })
 
-
+router.post('/', (req, res)=>{
+    Author.findById(req.body.authorId, (err, foundAuthor)=>{
+        Article.create(req.body, (err, createdArticle)=>{ //req.body.authorId is ignored due to Schema
+            foundAuthor.articles.push(createdArticle);
+            foundAuthor.save((err, data)=>{
+                res.redirect('/articles');
+            });
+        });
+    });
+});
 
 router.get('/new', (req, res)=>{
     Author.find({}, (err, allAuthors)=>{
@@ -32,12 +41,15 @@ router.get('/new', (req, res)=>{
 
 router.get('/:id', (req, res)=>{
     Article.findById(req.params.id, (err, foundArticle)=>{
-        Author.findOne({'articles._id':req.params.id}, (err, foundAuthor)=>{
+        console.log(foundArticle)
+
+        Author.findOne({'article.id':req.params.id}, (err, foundAuthor)=>{
+            console.log(foundAuthor)
             res.render('articles/show.ejs', {
-                author:foundAuthor,
+                author: foundAuthor,
                 article: foundArticle
             });
-        })
+        });
     });
 });
 
@@ -51,35 +63,13 @@ router.get('/:id/edit', (req, res) => {
 })
 
 
-//=========================================
-router.put('/:id', (req, res) => {
-  console.log(' am I hitting the put route') //
-  // If it is hitting the route, I want to see
-  console.log(req.body)
-
-
-  Article.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedArticle) => {
-    if(err){
-      res.send(err);
-    } else {
-        // Check to see if it is updating correctly
-        console.log(updatedArticle)
-        res.redirect('/articles');
-    }
-  })
-
-});
-
-
-
-
-
-router.post('/', (req, res)=>{
-    Author.findById(req.body.authorId, (err, foundAuthor)=>{
-        Article.create(req.body, (err, createdArticle)=>{ 
-            foundAuthor.articles.push(createdArticle);
+router.put('/:id', (req, res)=>{
+    Article.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedArticle)=>{
+        Author.findOne({ 'articles._id' : req.params.id }, (err, foundAuthor)=>{
+            foundAuthor.articles.id(req.params.id).remove();
+            foundAuthor.articles.push(updatedArticle);
             foundAuthor.save((err, data)=>{
-                res.redirect('/articles');
+                res.redirect('/articles/'+req.params.id);
             });
         });
     });
@@ -87,18 +77,20 @@ router.post('/', (req, res)=>{
 
 
 
-router.delete('/:id', (req, res) => {
 
-  console.log(req.params.id, ' this is params in delete')
-  Article.findByIdAndRemove(req.params.id, (err, deletedArticle) => {
-    if(err){
-      console.log(err, ' this is error in delete')
-      res.send(err);
-    } else {
-      console.log(deletedArticle, ' this is deletedarticle');
-      res.redirect('/articles');
-    }
-  });
-})
+
+
+
+
+router.delete('/:id', (req, res)=>{
+    Article.findByIdAndRemove(req.params.id, (err, foundArticle)=>{
+        Author.findOne({'articles._id':req.params.id}, (err, foundAuthor)=>{
+            foundAuthor.articles.id(req.params.id).remove();
+            foundAuthor.save((err, data)=>{
+                res.redirect('/articles');
+            });
+        });
+    });
+});
 
 module.exports = router;
